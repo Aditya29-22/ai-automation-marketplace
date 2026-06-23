@@ -1,4 +1,4 @@
-import { Zap, Mail, Phone, MapPin, ArrowUpRight, Globe, MessageSquare, Briefcase } from 'lucide-react';
+import { Zap, Mail, Phone, MapPin, ArrowUpRight, Globe, MessageSquare, Briefcase, Heart } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { useState, useEffect, useRef } from 'react';
 
@@ -194,8 +194,14 @@ export default function Footer() {
 
         {/* Theme Toggle & Copyright */}
         <div className="flex flex-col md:flex-row items-center gap-6 text-[13px] text-slate-500 dark:text-slate-400">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 sm:gap-4">
             <p>© 2026 AutomateStore.</p>
+            <span className="hidden sm:inline text-slate-300 dark:text-slate-700">|</span>
+            <p className="flex items-center gap-1.5">
+              Made with <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" /> by 
+              <a href="https://www.vineetraj.tech" target="_blank" rel="noopener noreferrer" className="text-slate-900 dark:text-slate-100 hover:text-cyan-500 transition-colors font-medium">Vineet</a>
+            </p>
+            <span className="hidden sm:inline text-slate-300 dark:text-slate-700">|</span>
             <button className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Privacy</button>
             <button className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Terms</button>
           </div>
