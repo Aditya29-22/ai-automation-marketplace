@@ -43,6 +43,8 @@ interface AppState {
   logout: () => void;
   isAuthModalOpen: boolean;
   setAuthModalOpen: (open: boolean) => void;
+  isCustomRequestOpen: boolean;
+  setCustomRequestOpen: (open: boolean) => void;
   authMode: 'login' | 'signup' | 'forgot';
   setAuthMode: (mode: 'login' | 'signup' | 'forgot') => void;
 
@@ -125,6 +127,8 @@ export const useStore = create<AppState>((set, get) => ({
   logout: () => set({ isLoggedIn: false, user: null }),
   isAuthModalOpen: false,
   setAuthModalOpen: (open) => set({ isAuthModalOpen: open }),
+  isCustomRequestOpen: false,
+  setCustomRequestOpen: (open) => set({ isCustomRequestOpen: open }),
   authMode: 'login',
   setAuthMode: (mode) => set({ authMode: mode }),
 

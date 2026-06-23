@@ -1,10 +1,11 @@
 import { Zap, Mail, Phone, MapPin, ArrowUpRight, Globe, MessageSquare, Briefcase } from 'lucide-react';
 import { useStore } from '../store/useStore';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Footer() {
-  const { setCurrentPage } = useStore();
+  const { setCurrentPage, setCustomRequestOpen } = useStore();
   const [theme, setTheme] = useState('dark');
+  const hoverTimer = useRef<NodeJS.Timeout | null>(null);
 
   const toggleTheme = (newTheme: 'light' | 'dark') => {
     setTheme(newTheme);
@@ -26,27 +27,51 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#fafafa] dark:bg-[#151515] text-slate-900 dark:text-slate-100 transition-colors duration-300 border-t border-slate-200 dark:border-white/[0.08]">
-      {/* CTA Section (Kept Original Content) */}
-      <div className="max-w-7xl mx-auto px-4 py-20">
-        <div className="relative overflow-hidden rounded-3xl p-10 sm:p-16 text-center">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-blue-600/10 to-purple-500/10 dark:from-cyan-500/5 dark:via-blue-600/5 dark:to-purple-500/5" />
-          <div className="absolute inset-0 dot-grid opacity-20 dark:opacity-10" />
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-purple-500/10 rounded-full blur-[100px]" />
-
-          <div className="relative">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 font-[Space_Grotesk]">
+      {/* CTA Section */}
+      <div className="w-full bg-[#fafafa] dark:bg-[#111] py-24 transition-colors duration-300 border-b border-slate-200 dark:border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-4 text-center flex flex-col items-center justify-center">
+          <div className="relative z-10 w-full flex flex-col items-center">
+            <h2 className="text-4xl sm:text-[3.5rem] font-medium text-slate-900 dark:text-white tracking-tight mb-6 leading-tight" style={{ fontFamily: 'system-ui, sans-serif' }}>
               Can&apos;t Find What You Need?
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-lg mx-auto">
+            <p className="text-slate-600 dark:text-slate-400 text-lg mb-12 max-w-lg mx-auto leading-relaxed">
               Tell us what you want automated and we&apos;ll build it for you. Custom automations starting at ₹9,999.
             </p>
-            <button
-              onClick={() => setCurrentPage('custom-request')}
-              className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/15 flex items-center gap-2 mx-auto"
+            
+            <div 
+              className="magic-btn-wrapper" 
+              onClick={() => setCustomRequestOpen(true)}
+              onMouseEnter={() => {
+                hoverTimer.current = setTimeout(() => {
+                  setCustomRequestOpen(true);
+                }, 3000);
+              }}
+              onMouseLeave={() => {
+                if (hoverTimer.current) clearTimeout(hoverTimer.current);
+              }}
             >
-              Request Custom Automation <ArrowUpRight className="w-4 h-4" />
-            </button>
+              <button className="magic-btn group">
+                <svg className="magic-btn-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                </svg>
+                <div className="magic-txt-wrapper">
+                  <div className="magic-txt-1">
+                    {"Request Custom Automations".split('').map((char, i) => (
+                      <span key={`1-${i}`} className="magic-btn-letter" style={{ animationDelay: `${i * 0.08}s` }}>
+                        {char === ' ' ? '\u00A0' : char}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="magic-txt-2">
+                    {"Requesting Solution.......".split('').map((char, i) => (
+                      <span key={`2-${i}`} className="magic-btn-letter" style={{ animationDelay: `${i * 0.08}s` }}>
+                        {char === ' ' ? '\u00A0' : char}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -70,13 +95,18 @@ export default function Footer() {
             <div className="flex flex-col">
               <h4 className="text-[11px] font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-6">Marketplace</h4>
               <ul className="space-y-4 text-sm font-medium text-slate-700 dark:text-slate-300">
-                {['All Automations', 'Free Automations', 'Bestsellers', 'New Arrivals', 'Custom Order'].map(item => (
+                {['All Automations', 'Free Automations', 'Bestsellers', 'New Arrivals'].map(item => (
                   <li key={item}>
                     <button onClick={() => setCurrentPage('marketplace')} className="hover:text-black dark:hover:text-white transition-colors w-full text-left">
                       {item}
                     </button>
                   </li>
                 ))}
+                <li>
+                  <button onClick={() => setCustomRequestOpen(true)} className="hover:text-black dark:hover:text-white transition-colors w-full text-left">
+                    Custom Order
+                  </button>
+                </li>
               </ul>
             </div>
 

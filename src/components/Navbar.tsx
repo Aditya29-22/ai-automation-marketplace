@@ -194,7 +194,7 @@ export default function Navbar() {
               </button>
             ))}
             <button
-              onClick={() => setCurrentPage('custom-request')}
+              onClick={() => setCustomRequestOpen(true)}
               className="ml-auto px-4 py-2 text-sm font-medium text-amber-300 bg-amber-500/[0.08] border border-amber-500/20 rounded-xl hover:bg-amber-500/[0.12] transition-all flex items-center gap-1.5"
             >
               <Sparkles className="w-3.5 h-3.5" /> Build for Me
@@ -230,7 +230,7 @@ export default function Navbar() {
                 </button>
               ))}
               <button
-                onClick={() => { setCurrentPage('custom-request'); setMobileOpen(false); }}
+                onClick={() => { setCustomRequestOpen(true); setMobileOpen(false); }}
                 className="block w-full text-left px-4 py-3 text-sm text-amber-300 hover:bg-amber-500/5 rounded-xl font-medium"
               >
                 <Sparkles className="inline w-3.5 h-3.5 mr-1.5" /> Build for Me — Custom Automation

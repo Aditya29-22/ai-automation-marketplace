@@ -46,7 +46,7 @@ function FreePage() {
 }
 
 export default function App() {
-  const { currentPage } = useStore();
+  const { currentPage, isCustomRequestOpen, setCustomRequestOpen } = useStore();
 
   const renderPage = () => {
     switch (currentPage) {
@@ -55,7 +55,6 @@ export default function App() {
       case 'product': return <ProductDetailPage />;
       case 'dashboard': return <DashboardPage />;
       case 'checkout': return <CheckoutPage />;
-      case 'custom-request': return <CustomRequestPage />;
       case 'seller-dashboard': return <SellerDashboard />;
       case 'free': return <FreePage />;
       default: return <HomePage />;
@@ -69,6 +68,7 @@ export default function App() {
       <Footer />
       <CartDrawer />
       <AuthModal />
+      <CustomRequestPage isOpen={isCustomRequestOpen} onClose={() => setCustomRequestOpen(false)} />
       <ChatBot />
     </div>
   );

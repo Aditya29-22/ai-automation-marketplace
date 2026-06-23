@@ -3,7 +3,7 @@ import { Download, Heart, Package, FileText, Trash2, ShoppingBag, ExternalLink }
 import { useStore } from '../store/useStore';
 
 export default function DashboardPage() {
-  const { purchases, wishlist, removeFromWishlist, isLoggedIn, user, setAuthModalOpen, setCurrentPage, setSelectedProductId, logout } = useStore();
+  const { purchases, wishlist, removeFromWishlist, isLoggedIn, user, setAuthModalOpen, setCurrentPage, setSelectedProductId, logout, setCustomRequestOpen } = useStore();
   const [activeTab, setActiveTab] = useState('purchases');
 
   if (!isLoggedIn) {
@@ -153,7 +153,7 @@ export default function DashboardPage() {
             <p className="text-sm text-slate-500 mb-4 max-w-md mx-auto">
               Tell us what you need and we&apos;ll build a custom automation tailored to your business. Starting at ₹9,999.
             </p>
-            <button onClick={() => setCurrentPage('custom-request')}
+            <button onClick={() => setCustomRequestOpen(true)}
               className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/10">
               Request Custom Automation
             </button>
