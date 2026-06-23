@@ -139,56 +139,71 @@ export default function TrustSection() {
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="py-24 bg-[#0a0a0f] relative overflow-hidden">
-        <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,212,255,0.03), transparent)'
-        }} />
-        <div className="relative max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <span className="text-[11px] font-mono text-emerald-400 uppercase tracking-[0.2em] mb-3 block">Results</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-[Space_Grotesk] mb-3">
-              Real Results, Real Numbers
-            </h2>
-            <p className="text-slate-500">Case studies from businesses using our automations</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {caseStudies.map((cs, i) => (
-              <div
-                key={i}
-                className="p-6 glass rounded-2xl border border-white/[0.04] hover:border-cyan-500/10 transition-all duration-300 group"
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-xs font-medium px-2 py-1 bg-cyan-500/10 text-cyan-400 rounded-lg border border-cyan-500/10">{cs.industry}</span>
-                  <span className="text-xs text-slate-600">{cs.company}</span>
-                </div>
-                <p className="text-4xl font-extrabold gradient-text mb-1 font-[Space_Grotesk]">{cs.metric}</p>
-                <p className="text-sm font-medium text-white mb-2">{cs.label}</p>
-                <p className="text-sm text-slate-500 leading-relaxed">{cs.description}</p>
+      {/* Case Studies & Stats (Redesigned) */}
+      <section className="py-24 bg-[#fafafa] dark:bg-[#111] transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          
+          {/* Top Part: Stats */}
+          <div className="flex flex-col md:flex-row gap-16 md:gap-8 mb-24">
+            {/* Left */}
+            <div className="flex-1 md:pr-12">
+              <h2 className="text-4xl sm:text-5xl font-medium text-slate-900 dark:text-white tracking-tight mb-6" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                Real Results,<br/>Real Numbers
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed mb-10 max-w-md">
+                Case studies from businesses using our automations.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <button className="px-6 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:scale-105 transition-transform">
+                  Get in touch
+                </button>
+                <button className="px-6 py-2.5 bg-transparent border border-slate-300 dark:border-white/[0.2] text-slate-900 dark:text-white rounded-full font-medium text-sm hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-colors">
+                  Case studies
+                </button>
               </div>
-            ))}
+            </div>
+            
+            {/* Right Stats */}
+            <div className="flex-1 grid grid-cols-2 gap-x-8 gap-y-12">
+              {[
+                { value: '500+', label: 'Happy Customers' },
+                { value: '1,200+', label: 'Automations Sold' },
+                { value: '₹2Cr+', label: 'Saved for Clients' },
+                { value: '99%', label: 'Success Rate' },
+              ].map((stat, i) => (
+                <div key={i} className="border-t border-slate-300 dark:border-white/[0.2] pt-6 flex flex-col justify-between h-full">
+                  <div>
+                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">{stat.label}</p>
+                  </div>
+                  <p className="text-5xl sm:text-[3.5rem] font-normal text-slate-900 dark:text-white mt-8 tracking-tighter" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    {stat.value}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Stats bar */}
-          <div className="mt-16 text-center">
-            <div className="inline-flex flex-wrap items-center justify-center gap-6 sm:gap-0 px-6 sm:px-8 py-5 glass rounded-2xl border border-white/[0.04]">
-              {[
-                { icon: <Users className="w-4 h-4" />, value: '500+', label: 'Happy Customers', color: 'cyan' },
-                { icon: <TrendingUp className="w-4 h-4" />, value: '1,200+', label: 'Automations Sold', color: 'purple' },
-                { icon: <Award className="w-4 h-4" />, value: '₹2Cr+', label: 'Saved for Clients', color: 'emerald' },
-              ].map((stat, i) => (
-                <div key={i} className={`flex items-center gap-4 ${i > 0 ? 'sm:border-l sm:border-white/[0.06] sm:pl-8' : ''}`}>
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                    stat.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' :
-                    stat.color === 'purple' ? 'bg-purple-500/10 text-purple-400' :
-                    'bg-emerald-500/10 text-emerald-400'
-                  }`}>
-                    {stat.icon}
-                  </div>
-                  <div className="text-left">
-                    <p className="text-xl sm:text-2xl font-extrabold text-white font-[Space_Grotesk]">{stat.value}</p>
-                    <p className="text-[10px] text-slate-500 uppercase tracking-wider">{stat.label}</p>
+          {/* Bottom Part: Case Studies */}
+          <div className="border-t border-slate-200 dark:border-white/[0.08] pt-16">
+            <h3 className="text-2xl font-medium text-slate-900 dark:text-white mb-12" style={{ fontFamily: 'system-ui, sans-serif' }}>
+              Trusted by great companies
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+              {caseStudies.map((cs, i) => (
+                <div key={i} className="border-t border-slate-300 dark:border-white/[0.2] pt-6 flex flex-col h-full group cursor-pointer">
+                  <p className="text-sm font-medium text-slate-900 dark:text-white mb-8 min-h-[40px] leading-relaxed pr-4">
+                    {cs.label} for {cs.company}
+                  </p>
+                  <p className="text-[3.5rem] sm:text-[4rem] font-normal text-slate-900 dark:text-white mb-4 tracking-tighter" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    {cs.metric}
+                  </p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-12 flex-1 pr-4">
+                    {cs.description}
+                  </p>
+                  <div className="mt-auto">
+                    <span className="text-sm font-medium text-slate-900 dark:text-white underline underline-offset-4 decoration-slate-300 dark:decoration-slate-600 group-hover:decoration-slate-900 dark:group-hover:decoration-white transition-colors">
+                      Read Case Study
+                    </span>
                   </div>
                 </div>
               ))}

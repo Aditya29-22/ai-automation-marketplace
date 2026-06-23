@@ -304,27 +304,56 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Bottom stats bar */}
-        <div className="mt-20 pt-10 border-t border-white/[0.04]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: 500, suffix: '+', label: 'Happy Customers', color: 'cyan' },
-              { value: 1200, suffix: '+', label: 'Automations Sold', color: 'purple' },
-              { value: 2, suffix: 'Cr+', label: 'Saved for Clients', color: 'emerald' },
-              { value: 99, suffix: '%', label: 'Success Rate', color: 'amber' },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <p className={`text-3xl sm:text-4xl font-extrabold font-[Space_Grotesk] ${
-                  stat.color === 'cyan' ? 'gradient-text' :
-                  stat.color === 'purple' ? 'gradient-text' :
-                  stat.color === 'emerald' ? 'gradient-text-emerald' :
-                  'gradient-text-amber'
-                }`}>
-                  <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="text-xs text-slate-500 mt-1 uppercase tracking-wider">{stat.label}</p>
-              </div>
-            ))}
+        {/* Bottom stats bar - Bento Design */}
+        <div className="mt-24 pt-16 border-t border-white/[0.08]">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+            
+            {/* Heading */}
+            <div className="md:col-span-2 flex items-start p-2 mb-6 md:mb-0">
+              <h2 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-semibold text-white tracking-tight leading-[1.05]">
+                Numbers<br />speak.
+              </h2>
+            </div>
+
+            {/* Card 1 */}
+            <div className="bg-white rounded-3xl p-6 md:p-8 flex flex-col justify-between min-h-[220px] md:col-span-1 hover:scale-[1.02] transition-transform">
+              <p className="text-slate-500 text-[15px] leading-snug">Happy<br/>Customers.</p>
+              <p className="text-black text-[3.5rem] md:text-6xl font-black tracking-tighter mt-8 font-mono">
+                <AnimatedCounter end={500} suffix="+" />
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white rounded-3xl p-6 md:p-8 flex flex-col justify-between min-h-[220px] md:col-span-1 hover:scale-[1.02] transition-transform">
+              <p className="text-slate-500 text-[15px] leading-snug">Automations<br/>Sold.</p>
+              <p className="text-black text-[3.5rem] md:text-6xl font-black tracking-tighter mt-8 font-mono">
+                <AnimatedCounter end={1200} suffix="+" />
+              </p>
+            </div>
+
+            {/* Card 3 (Wide) */}
+            <div className="bg-white rounded-3xl p-6 md:p-8 flex flex-col justify-between min-h-[240px] md:col-span-2 hover:scale-[1.02] transition-transform">
+              <p className="text-slate-500 text-[15px] leading-snug">Saved for<br/>Clients.</p>
+              <p className="text-black text-6xl md:text-[5.5rem] font-black tracking-tighter mt-8 font-mono leading-none">
+                ₹<AnimatedCounter end={2} suffix="Cr+" />
+              </p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-white rounded-3xl p-6 md:p-8 flex flex-col justify-between min-h-[240px] md:col-span-1 hover:scale-[1.02] transition-transform">
+              <p className="text-slate-500 text-[15px] leading-snug">Success<br/>Rate.</p>
+              <p className="text-black text-[3.5rem] md:text-6xl font-black tracking-tighter mt-8 font-mono">
+                <AnimatedCounter end={99} suffix="%" />
+              </p>
+            </div>
+
+            {/* Arrow */}
+            <div className="hidden md:flex items-end justify-end p-6 md:col-span-1 min-h-[240px]">
+              <svg className="w-24 h-24 text-white opacity-90 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter">
+                <path d="M6 6h12v12M18 6L6 18" />
+              </svg>
+            </div>
+
           </div>
         </div>
       </div>
