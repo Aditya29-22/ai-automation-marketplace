@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, cloneElement } from 'react';
 import { Shield, Zap, Clock, BadgeCheck, RefreshCcw, Headphones, Star, Quote, TrendingUp, Users, Award, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
@@ -66,37 +66,59 @@ export default function TrustSection() {
   return (
     <>
       {/* Trust Badges */}
-      <section className="py-24 bg-[#0a0a0f] relative">
-        <div className="absolute inset-0 aurora-bg" />
+      <section className="py-24 bg-[#111] relative">
+        <div className="absolute inset-0 aurora-bg opacity-30" />
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <span className="text-[11px] font-mono text-cyan-400 uppercase tracking-[0.2em] mb-3 block">Trust</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-[Space_Grotesk] mb-3">
+            <h2 className="text-3xl sm:text-5xl font-medium text-white tracking-tight mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
               Why 500+ Businesses Trust Us
             </h2>
-            <p className="text-slate-500 max-w-lg mx-auto">Every automation is verified, tested, and backed by our guarantee</p>
+            <p className="text-slate-400 text-lg max-w-lg mx-auto">Every automation is verified, tested, and backed by our guarantee</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {trustFeatures.map((item, i) => (
-              <div
-                key={i}
-                className={`group p-6 glass-card rounded-2xl hover:border-${item.color}-500/20 transition-all duration-500 animate-fade-in-up opacity-0 stagger-${Math.min(i + 1, 6)}`}
-              >
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 ${
-                  item.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500/20' :
-                  item.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/20' :
-                  item.color === 'amber' ? 'bg-amber-500/10 text-amber-400 group-hover:bg-amber-500/20' :
-                  item.color === 'purple' ? 'bg-purple-500/10 text-purple-400 group-hover:bg-purple-500/20' :
-                  item.color === 'pink' ? 'bg-pink-500/10 text-pink-400 group-hover:bg-pink-500/20' :
-                  'bg-blue-500/10 text-blue-400 group-hover:bg-blue-500/20'
-                }`}>
-                  {item.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 auto-rows-[220px] sm:auto-rows-[240px]">
+            {trustFeatures.map((item, i) => {
+              const isLarge = i === 0;
+              
+              return (
+                <div
+                  key={i}
+                  className={`group relative overflow-hidden rounded-3xl p-6 sm:p-8 transition-all duration-500 flex flex-col justify-end animate-fade-in-up opacity-0 stagger-${Math.min(i + 1, 6)} ${
+                    isLarge ? "md:col-span-2 md:row-span-2" : "col-span-1 row-span-1"
+                  }`}
+                >
+                  {/* Static Border Layer (for non-hover state of small cards) */}
+                  {!isLarge && (
+                    <div className="absolute inset-0 z-0 border border-white/[0.05] rounded-3xl transition-opacity duration-500 opacity-100 group-hover:opacity-0 pointer-events-none" />
+                  )}
+
+                  {/* Animated border gradient */}
+                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] z-0 animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(255,255,255,0.4)_360deg)] transition-opacity duration-500 ${isLarge ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+                  
+                  {/* Inner background mask */}
+                  <div className={`absolute inset-[1px] z-0 rounded-[calc(1.5rem-1px)] transition-colors duration-500 ${isLarge ? 'bg-gradient-to-br from-[#0f0f13] to-[#050508]' : 'bg-[#0a0a0f] group-hover:bg-[#0f0f13]'}`} />
+
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-t from-white/[0.02] to-transparent pointer-events-none z-0" />
+
+                  {/* Graphic */}
+                  <div className="absolute -top-8 -right-8 w-40 h-[138px] opacity-30 group-hover:opacity-70 transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-2 pointer-events-none z-0">
+                    <div className="w-full h-full bg-[#1c1c1c] border border-white/[0.05] flex items-center justify-center shadow-2xl text-white pt-6 sm:pt-10" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
+                      {cloneElement(item.icon as React.ReactElement, { className: isLarge ? "w-20 h-20" : "w-12 h-12" })}
+                    </div>
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="relative z-10 mt-auto">
+                    <div className="flex items-center gap-3 mb-2 sm:mb-3">
+                      <div className={`w-2 h-2 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)] ${isLarge ? 'bg-cyan-400' : 'bg-white/40 group-hover:bg-cyan-400'}`} />
+                      <h3 className={`font-medium text-white tracking-wide ${isLarge ? 'text-xl sm:text-2xl' : 'text-lg'}`}>{item.title}</h3>
+                    </div>
+                    <p className={`text-slate-400 leading-relaxed ${isLarge ? 'text-sm sm:text-base max-w-sm' : 'text-xs sm:text-sm'}`}>{item.desc}</p>
+                  </div>
                 </div>
-                <h3 className="text-base font-semibold text-white mb-1.5">{item.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
