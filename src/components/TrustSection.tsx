@@ -1,4 +1,5 @@
-import { Shield, Zap, Clock, BadgeCheck, RefreshCcw, Headphones, Star, Quote, TrendingUp, Users, Award } from 'lucide-react';
+import { useState } from 'react';
+import { Shield, Zap, Clock, BadgeCheck, RefreshCcw, Headphones, Star, Quote, TrendingUp, Users, Award, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
   {
@@ -61,6 +62,7 @@ const trustFeatures = [
 ];
 
 export default function TrustSection() {
+  const [activeIndex, setActiveIndex] = useState(1);
   return (
     <>
       {/* Trust Badges */}
@@ -100,41 +102,71 @@ export default function TrustSection() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-[#0a0a0f] relative">
+      <section className="py-24 bg-[#fafafa] dark:bg-[#111] transition-colors duration-300 relative overflow-hidden">
         <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse 60% 50% at 30% 50%, rgba(168,85,247,0.03), transparent)'
+          background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168,85,247,0.03), transparent)'
         }} />
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <span className="text-[11px] font-mono text-purple-400 uppercase tracking-[0.2em] mb-3 block">Testimonials</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-[Space_Grotesk] mb-3">
+            <h2 className="text-3xl sm:text-5xl font-medium text-slate-900 dark:text-white tracking-tight mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
               Loved by Business Owners
             </h2>
-            <p className="text-slate-500">Real results from real businesses</p>
+            <p className="text-slate-600 dark:text-slate-400 text-lg">Real results from real businesses</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <div
-                key={i}
-                className="relative p-6 glass rounded-2xl border border-white/[0.04] hover:border-white/[0.08] transition-all duration-300 animate-fade-in-up opacity-0 stagger-${i + 1}"
-              >
-                <Quote className="absolute top-4 right-4 w-8 h-8 text-cyan-500/10" />
-                <div className="flex items-center gap-1 mb-4">
-                  {[1,2,3,4,5].map(s => (
-                    <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <p className="text-sm text-slate-300 leading-relaxed mb-5">&ldquo;{t.text}&rdquo;</p>
-                <div className="flex items-center gap-3">
-                  <img src={t.image} alt={t.name} className="w-10 h-10 rounded-full object-cover ring-2 ring-white/[0.06]" />
-                  <div>
-                    <p className="text-sm font-semibold text-white">{t.name}</p>
-                    <p className="text-xs text-slate-500">{t.role}</p>
-                  </div>
-                </div>
+          <div className="max-w-4xl mx-auto relative mt-16 sm:mt-24 mb-12 sm:mb-20">
+            {/* Wavy Background Path */}
+            <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 text-slate-900/[0.05] dark:text-white/[0.05] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1000 100" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 6">
+              <path d="M-100,50 Q250,0 500,50 T1100,50" />
+            </svg>
+            
+            {/* Avatars */}
+            <div className="relative flex items-center justify-center gap-12 sm:gap-24 lg:gap-32 h-32">
+              {testimonials.map((t, i) => {
+                const isActive = activeIndex === i;
+                const yOffset = i === 1 ? 20 : -20;
+                
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setActiveIndex(i)}
+                    className="relative z-10 transition-all duration-500"
+                    style={{ transform: `translateY(${yOffset}px)` }}
+                  >
+                    <div className={`rounded-full p-1 transition-all duration-500 ${isActive ? 'border-2 border-rose-500/80 scale-125' : 'border border-transparent opacity-50 hover:opacity-100 hover:scale-110 scale-100'}`}>
+                      <img src={t.image} alt={t.name} className="w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover shadow-2xl" />
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Active Testimonial Content */}
+          <div className="flex items-center gap-4 sm:gap-8 max-w-3xl mx-auto relative z-20">
+            <button 
+              onClick={() => setActiveIndex(prev => (prev === 0 ? testimonials.length - 1 : prev - 1))}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-colors shrink-0"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+
+            <div className="flex-1 min-h-[160px] flex flex-col justify-center items-center text-center">
+              <p className="text-lg sm:text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-light mb-8 transition-opacity duration-300">
+                &ldquo;{testimonials[activeIndex].text}&rdquo;
+              </p>
+              <div>
+                <p className="text-slate-900 dark:text-white font-medium mb-1">{testimonials[activeIndex].name}</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">{testimonials[activeIndex].role}</p>
               </div>
-            ))}
+            </div>
+
+            <button 
+              onClick={() => setActiveIndex(prev => (prev === testimonials.length - 1 ? 0 : prev + 1))}
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-colors shrink-0"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
           </div>
         </div>
       </section>
