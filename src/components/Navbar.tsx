@@ -41,14 +41,13 @@ export default function Navbar() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               Verified & Tested
             </span>
-            <span className="hidden sm:flex items-center gap-1.5 text-[11px] text-slate-400">
+            <span className="hidden sm:flex items-center gap-1.5 text-[11px] text-slate-400 animate-pulse-text">
               <Sparkles className="w-3 h-3 text-amber-400" />
               30-Day Money Back
             </span>
           </div>
           <div className="hidden sm:flex items-center gap-4">
-            <span className="text-[11px] text-slate-500 font-mono">DEVESH & VINEET</span>
-            <span className="text-[11px] font-mono gradient-text font-bold">🔥 50% OFF LAUNCH</span>
+            <span className="text-[11px] font-mono gradient-text font-bold animate-slide-back-forth inline-block">🔥 50% OFF LAUNCH</span>
           </div>
         </div>
       </div>

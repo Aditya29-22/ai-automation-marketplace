@@ -100,7 +100,7 @@ export default function ChatBot() {
     return (
       <button
         onClick={() => setChatOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-full shadow-2xl shadow-cyan-500/20 flex items-center justify-center transition-all hover:scale-105 z-40 animate-pulse-glow"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg shadow-xl shadow-black/10 dark:shadow-black/40 flex items-center justify-center transition-all hover:scale-105 z-40 border border-slate-800 dark:border-white"
       >
         <MessageCircle className="w-6 h-6" />
       </button>
@@ -108,21 +108,21 @@ export default function ChatBot() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 w-[380px] max-w-[calc(100vw-2rem)] h-[560px] max-h-[calc(100vh-6rem)] bg-[#111118] rounded-3xl shadow-2xl shadow-black/50 border border-white/[0.06] flex flex-col z-50 animate-fade-in-scale overflow-hidden">
+    <div className="fixed bottom-6 right-6 w-[380px] max-w-[calc(100vw-2rem)] h-[560px] max-h-[calc(100vh-6rem)] bg-[#fafafa] dark:bg-[#151515] rounded-xl shadow-2xl shadow-black/20 border border-slate-200 dark:border-white/[0.08] flex flex-col z-50 transition-colors duration-300 overflow-hidden text-slate-900 dark:text-slate-100">
       {/* Header */}
-      <div className="bg-gradient-to-r from-cyan-500/10 to-blue-600/10 px-5 py-4 flex items-center justify-between shrink-0 border-b border-white/[0.04]">
+      <div className="bg-white dark:bg-[#111] px-5 py-4 flex items-center justify-between shrink-0 border-b border-slate-200 dark:border-white/[0.08]">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-cyan-500/10 border border-cyan-500/20 rounded-xl flex items-center justify-center">
-            <Bot className="w-5 h-5 text-cyan-400" />
+          <div className="w-9 h-9 border-[2px] border-slate-900 dark:border-white rounded-md flex items-center justify-center">
+            <Bot className="w-5 h-5 text-slate-900 dark:text-white" />
           </div>
           <div>
-            <p className="text-sm font-semibold text-white">AutoBot AI</p>
+            <p className="text-sm font-semibold">AutoBot AI</p>
             <p className="text-[10px] text-slate-500 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" /> Online • Smart recommendations
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" /> Online • Smart recommendations
             </p>
           </div>
         </div>
-        <button onClick={() => setChatOpen(false)} className="p-1.5 hover:bg-white/[0.03] rounded-lg transition-colors text-slate-500 hover:text-white">
+        <button onClick={() => setChatOpen(false)} className="p-1.5 hover:bg-slate-100 dark:hover:bg-white/[0.05] rounded-md transition-colors text-slate-500 hover:text-slate-900 dark:hover:text-white">
           <X className="w-5 h-5" />
         </button>
       </div>
@@ -132,15 +132,15 @@ export default function ChatBot() {
         {chatMessages.map((msg, i) => (
           <div key={i} className={`flex gap-2 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
             {msg.role === 'bot' && (
-              <div className="w-7 h-7 bg-cyan-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center shrink-0">
-                <Bot className="w-4 h-4 text-cyan-400" />
+              <div className="w-7 h-7 border border-slate-300 dark:border-white/[0.2] rounded-md flex items-center justify-center shrink-0">
+                <Bot className="w-4 h-4 text-slate-600 dark:text-slate-400" />
               </div>
             )}
             <div className={`max-w-[80%] ${msg.role === 'user' ? 'ml-auto' : ''}`}>
-              <div className={`px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${
+              <div className={`px-3.5 py-2.5 text-sm leading-relaxed ${
                 msg.role === 'user'
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-br-md'
-                  : 'bg-white/[0.03] text-slate-300 rounded-bl-md border border-white/[0.04]'
+                  ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 rounded-xl rounded-br-sm'
+                  : 'bg-white dark:bg-[#111] text-slate-700 dark:text-slate-300 rounded-xl rounded-bl-sm border border-slate-200 dark:border-white/[0.08]'
               }`}>
                 {msg.text.split('\n').map((line, j) => (
                   <span key={j}>{line}<br /></span>
@@ -150,25 +150,25 @@ export default function ChatBot() {
               {msg.products && msg.products.length > 0 && (
                 <div className="mt-2 space-y-2">
                   {msg.products.map(p => (
-                    <div key={p.id} className="bg-white/[0.02] rounded-xl border border-white/[0.04] p-3 hover:border-cyan-500/10 transition-colors">
+                    <div key={p.id} className="bg-white dark:bg-[#111] rounded-lg border border-slate-200 dark:border-white/[0.08] p-3 hover:border-slate-400 dark:hover:border-white/[0.2] transition-colors">
                       <div className="flex gap-2.5">
-                        <img src={p.thumbnail} alt={p.name} className="w-12 h-12 rounded-lg object-cover shrink-0" />
+                        <img src={p.thumbnail} alt={p.name} className="w-12 h-12 rounded-md object-cover shrink-0 border border-slate-100 dark:border-white/[0.05]" />
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-semibold text-white line-clamp-1">{p.name}</p>
+                          <p className="text-xs font-semibold line-clamp-1">{p.name}</p>
                           <p className="text-[10px] text-slate-500 mt-0.5">
                             {p.isFree ? '🎁 FREE' : `${p.currency}${p.price.toLocaleString()}`}
                             {' • '}★ {p.rating}
                           </p>
-                          <div className="flex gap-1.5 mt-1.5">
+                          <div className="flex gap-1.5 mt-2">
                             <button
                               onClick={() => { setSelectedProductId(p.id); setCurrentPage('product'); setChatOpen(false); }}
-                              className="px-2 py-1 bg-cyan-500/10 text-cyan-400 text-[10px] font-medium rounded-md hover:bg-cyan-500/20 transition-colors border border-cyan-500/10"
+                              className="px-2 py-1 bg-slate-100 dark:bg-white/[0.05] text-slate-700 dark:text-slate-300 text-[10px] font-medium rounded hover:bg-slate-200 dark:hover:bg-white/[0.1] transition-colors border border-slate-200 dark:border-white/[0.05]"
                             >
                               View
                             </button>
                             <button
                               onClick={() => addToCart(p)}
-                              className="px-2 py-1 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-[10px] font-medium rounded-md hover:from-cyan-400 hover:to-blue-500 transition-colors flex items-center gap-0.5"
+                              className="px-2 py-1 bg-slate-900 dark:bg-white text-white dark:text-black text-[10px] font-medium rounded hover:bg-slate-800 dark:hover:bg-gray-200 transition-colors flex items-center gap-0.5"
                             >
                               <ShoppingCart className="w-2.5 h-2.5" /> Add
                             </button>
@@ -185,13 +185,13 @@ export default function ChatBot() {
 
         {typing && (
           <div className="flex gap-2">
-            <div className="w-7 h-7 bg-cyan-500/10 border border-cyan-500/20 rounded-lg flex items-center justify-center shrink-0">
-              <Bot className="w-4 h-4 text-cyan-400" />
+            <div className="w-7 h-7 border border-slate-300 dark:border-white/[0.2] rounded-md flex items-center justify-center shrink-0">
+              <Bot className="w-4 h-4 text-slate-600 dark:text-slate-400" />
             </div>
-            <div className="bg-white/[0.03] rounded-2xl rounded-bl-md px-4 py-3 flex items-center gap-1 border border-white/[0.04]">
-              <span className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+            <div className="bg-white dark:bg-[#111] rounded-xl rounded-bl-sm px-4 py-3 flex items-center gap-1 border border-slate-200 dark:border-white/[0.08]">
+              <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+              <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+              <span className="w-1.5 h-1.5 bg-slate-400 dark:bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
             </div>
           </div>
         )}
@@ -199,12 +199,12 @@ export default function ChatBot() {
       </div>
 
       {/* Quick actions */}
-      <div className="px-4 pb-2 flex gap-1.5 overflow-x-auto shrink-0">
+      <div className="px-4 pb-2 flex gap-1.5 overflow-x-auto shrink-0 scrollbar-hide">
         {['Best sellers', 'Free tools', 'WhatsApp bots', 'E-commerce'].map(q => (
           <button
             key={q}
             onClick={() => { setInput(q); }}
-            className="px-2.5 py-1 bg-white/[0.02] border border-white/[0.04] rounded-full text-[10px] text-slate-500 hover:bg-cyan-500/5 hover:text-cyan-400 hover:border-cyan-500/10 transition-colors whitespace-nowrap shrink-0"
+            className="px-2.5 py-1 bg-white dark:bg-[#111] border border-slate-200 dark:border-white/[0.08] rounded-md text-[10px] text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/[0.05] hover:text-slate-900 dark:hover:text-white transition-colors whitespace-nowrap shrink-0"
           >
             {q}
           </button>
@@ -212,20 +212,20 @@ export default function ChatBot() {
       </div>
 
       {/* Input */}
-      <div className="px-4 pb-4 shrink-0">
+      <div className="p-4 shrink-0 border-t border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#111]">
         <div className="flex gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="Ask me anything about automations..."
-            className="flex-1 px-4 py-2.5 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/30 focus:ring-1 focus:ring-cyan-500/10"
+            placeholder="Ask me anything..."
+            className="flex-1 px-4 py-2 bg-transparent border border-slate-300 dark:border-white/[0.2] rounded-md text-sm placeholder:text-slate-500 focus:outline-none focus:border-slate-500 dark:focus:border-slate-400"
           />
           <button
             onClick={handleSend}
             disabled={!input.trim()}
-            className="px-3.5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-xl transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-lg shadow-cyan-500/10"
+            className="px-3 py-2 bg-slate-900 dark:bg-white text-white dark:text-black rounded-md transition-colors disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center hover:bg-slate-800 dark:hover:bg-slate-200"
           >
             <Send className="w-4 h-4" />
           </button>
