@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import {  MailIcon as Mail, LockIcon as Lock, UserIcon as User, EyeIcon as Eye, EyeOffIcon as EyeOff  } from '../lib/icons';
-import { X, ArrowRight } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
+import { UserIcon as User, MailIcon as Mail, LockIcon as Lock, EyeIcon as Eye, EyeOffIcon as EyeOff } from '@animateicons/react/lucide';
 import { useStore } from '../store/useStore';
 
 export default function AuthModal() {
@@ -23,7 +23,7 @@ export default function AuthModal() {
     <>
       <div className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm" onClick={() => setAuthModalOpen(false)} />
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-[#111118] rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-fade-in-scale border border-white/[0.06]">
+        <div className="bg-[#0a0a0f] rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-fade-in-scale border border-white/[0.06]">
           {/* Header */}
           <div className="relative px-8 pt-8 pb-4">
             <button onClick={() => setAuthModalOpen(false)} className="absolute top-4 right-4 p-2 hover:bg-white/[0.03] rounded-lg transition-colors text-slate-500 hover:text-white">
@@ -31,13 +31,21 @@ export default function AuthModal() {
             </button>
 
             <div className="text-center">
-              <div className="relative w-14 h-14 mx-auto mb-4">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl blur-[3px] opacity-80" />
-                <div className="relative w-14 h-14 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                  <User className="w-7 h-7 text-white" />
+              <div className="relative w-16 h-16 mx-auto mb-4">
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full blur-[4px] opacity-60" />
+                <div className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-lg overflow-hidden group/avatar p-[2px]">
+                  <div className="absolute inset-0 -z-10">
+                    <div 
+                      className="absolute top-1/2 left-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                      style={{ animation: 'spin-center 4s linear infinite' }}
+                    />
+                  </div>
+                  <div className="w-full h-full rounded-full bg-[#0a0a0f] overflow-hidden flex items-center justify-center">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Vineet&backgroundColor=b6e3f4" alt="Avatar" className="w-full h-full object-cover scale-110" />
+                  </div>
                 </div>
               </div>
-              <h2 className="text-xl font-bold text-white font-[Space_Grotesk]">
+              <h2 className="text-xl font-bold text-white tracking-tight">
                 {authMode === 'login' ? 'Welcome Back' : authMode === 'signup' ? 'Create Account' : 'Reset Password'}
               </h2>
               <p className="text-sm text-slate-500 mt-1">
@@ -64,31 +72,31 @@ export default function AuthModal() {
             {authMode !== 'forgot' && (
               <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/[0.06]" /></div>
-                <div className="relative flex justify-center text-xs"><span className="bg-[#111118] px-3 text-slate-600">or continue with email</span></div>
+                <div className="relative flex justify-center text-xs"><span className="bg-[#0a0a0f] px-3 text-slate-600">or continue with email</span></div>
               </div>
             )}
 
             <div className="space-y-3">
               {authMode === 'signup' && (
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
+                <div className="relative group/input">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 group-focus-within/input:text-pink-500 transition-colors" />
                   <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name"
-                    className="w-full pl-10 pr-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/30 focus:ring-1 focus:ring-cyan-500/10 transition-all" />
+                    className="w-full pl-10 pr-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-pink-500/30 focus:ring-1 focus:ring-pink-500/10 transition-all" />
                 </div>
               )}
 
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
+              <div className="relative group/input">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 group-focus-within/input:text-pink-500 transition-colors" />
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email address" required
-                  className="w-full pl-10 pr-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/30 focus:ring-1 focus:ring-cyan-500/10 transition-all" />
+                  className="w-full pl-10 pr-4 py-3 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-pink-500/30 focus:ring-1 focus:ring-pink-500/10 transition-all" />
               </div>
 
               {authMode !== 'forgot' && (
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
+                <div className="relative group/input">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 group-focus-within/input:text-pink-500 transition-colors" />
                   <input type={showPw ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"
-                    className="w-full pl-10 pr-10 py-3 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/30 focus:ring-1 focus:ring-cyan-500/10 transition-all" />
-                  <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-400">
+                    className="w-full pl-10 pr-10 py-3 bg-white/[0.03] border border-white/[0.06] rounded-xl text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-pink-500/30 focus:ring-1 focus:ring-pink-500/10 transition-all" />
+                  <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-4 bottom-[14px] text-slate-600 hover:text-slate-400 group-focus-within/input:text-pink-500">
                     {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
@@ -96,23 +104,30 @@ export default function AuthModal() {
             </div>
 
             {authMode === 'login' && (
-              <button type="button" onClick={() => setAuthMode('forgot')} className="text-xs text-cyan-400 mt-2 hover:text-cyan-300 transition-colors">
+              <button type="button" onClick={() => setAuthMode('forgot')} className="text-xs text-pink-500 mt-2 hover:text-pink-400 transition-colors">
                 Forgot password?
               </button>
             )}
 
-            <button type="submit" className="w-full mt-5 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/10">
-              {authMode === 'login' ? 'Sign In' : authMode === 'signup' ? 'Create Account' : 'Send Reset Link'}
-              <ArrowRight className="w-4 h-4" />
+            <button type="submit" className="relative w-full mt-5 flex items-center justify-center gap-2 px-6 py-3 text-white font-semibold rounded-xl shadow-lg overflow-hidden group/btn text-[15px]">
+              <div className="absolute inset-0 -z-10">
+                <div 
+                  className="absolute top-1/2 left-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                  style={{ animation: 'spin-center 4s linear infinite' }}
+                />
+              </div>
+              <div className="absolute inset-[1px] bg-[#0a0a0f] rounded-[11px] -z-10" />
+              <span className="relative z-10 group-hover/btn:scale-105 transition-transform duration-300">{authMode === 'login' ? 'Sign In' : authMode === 'signup' ? 'Create Account' : 'Send Reset Link'}</span>
+              <ArrowUpRight className="w-4 h-4 relative z-10 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-transform duration-300" />
             </button>
 
             <p className="text-center text-xs text-slate-600 mt-4">
               {authMode === 'login' ? (
-                <>Don&apos;t have an account? <button type="button" onClick={() => setAuthMode('signup')} className="text-cyan-400 font-medium hover:text-cyan-300 transition-colors">Sign up</button></>
+                <>Don&apos;t have an account? <button type="button" onClick={() => setAuthMode('signup')} className="text-pink-500 font-medium hover:text-pink-400 transition-colors">Sign up</button></>
               ) : authMode === 'signup' ? (
-                <>Already have an account? <button type="button" onClick={() => setAuthMode('login')} className="text-cyan-400 font-medium hover:text-cyan-300 transition-colors">Sign in</button></>
+                <>Already have an account? <button type="button" onClick={() => setAuthMode('login')} className="text-pink-500 font-medium hover:text-pink-400 transition-colors">Sign in</button></>
               ) : (
-                <button type="button" onClick={() => setAuthMode('login')} className="text-cyan-400 font-medium hover:text-cyan-300 transition-colors">Back to login</button>
+                <button type="button" onClick={() => setAuthMode('login')} className="text-pink-500 font-medium hover:text-pink-400 transition-colors">Back to login</button>
               )}
             </p>
           </form>

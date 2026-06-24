@@ -1,7 +1,8 @@
-import { useState, cloneElement } from 'react';
+import { useState, cloneElement, useEffect } from 'react';
 import { StarIcon as Star, TrendingUpIcon as TrendingUp, UsersIcon as Users, ChevronLeftIcon as ChevronLeft, ChevronRightIcon as ChevronRight  } from '../lib/icons';
 import { Quote, Award, ArrowUpRight, ArrowRight } from 'lucide-react';
 import { CircleCheckBigIcon as BadgeCheck, ShieldCheckIcon as Shield, ZapIcon as Zap, RocketIcon as Clock, SparklesIcon as RefreshCcw, HeadphonesIcon as Headphones } from '@animateicons/react/lucide';
+
 const testimonials = [
   {
     name: 'Rajesh Kumar',
@@ -9,7 +10,7 @@ const testimonials = [
     avatar: 'RK',
     text: 'We replaced a ₹30,000/month tool with a ₹5,000 one-time automation. The ROI was insane — paid for itself on day one.',
     rating: 5,
-    image: 'https://images.pexels.com/photos/5308640/pexels-photo-5308640.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=100&w=100',
+    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rajesh&backgroundColor=b6e3f4',
   },
   {
     name: 'Priya Sharma',
@@ -17,7 +18,7 @@ const testimonials = [
     avatar: 'PS',
     text: 'Setup took 20 minutes. Now our order processing runs on autopilot. We handle 3x more orders with the same team.',
     rating: 5,
-    image: 'https://images.pexels.com/photos/6942776/pexels-photo-6942776.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=100&w=100',
+    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Priya&backgroundColor=c0aede',
   },
   {
     name: 'Arjun Patel',
@@ -25,7 +26,7 @@ const testimonials = [
     avatar: 'AP',
     text: 'The AI chatbot recommended exactly what we needed. Customer support response time dropped from 2 hours to 5 seconds.',
     rating: 5,
-    image: 'https://images.pexels.com/photos/14950779/pexels-photo-14950779.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=100&w=100',
+    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Arjun&backgroundColor=ffdfbf',
   },
 ];
 
@@ -67,6 +68,16 @@ const trustFeatures = [
 
 export default function TrustSection() {
   const [activeIndex, setActiveIndex] = useState(1);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveIndex(prev => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
   return (
     <>
       {/* Trust Badges */}
@@ -125,7 +136,11 @@ export default function TrustSection() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-[#0a0a0f] border-t border-white/[0.04] relative overflow-hidden">
+      <section 
+        className="py-24 bg-[#0a0a0f] border-t border-white/[0.04] relative overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className="absolute inset-0" style={{
           background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168,85,247,0.03), transparent)'
         }} />
@@ -138,26 +153,26 @@ export default function TrustSection() {
           </div>
 
           <div className="max-w-4xl mx-auto relative mt-16 sm:mt-24 mb-12 sm:mb-20">
-            {/* Wavy Background Path */}
+            {/* Straight Background Path */}
             <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 text-white/[0.05] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1000 100" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 6">
-              <path d="M-100,50 Q250,0 500,50 T1100,50" />
+              <line x1="0" y1="50" x2="1000" y2="50" />
             </svg>
             
             {/* Avatars */}
             <div className="relative flex items-center justify-center gap-12 sm:gap-24 lg:gap-32 h-32">
               {testimonials.map((t, i) => {
                 const isActive = activeIndex === i;
-                const yOffset = i === 1 ? 20 : -20;
                 
                 return (
                   <button
                     key={i}
                     onClick={() => setActiveIndex(i)}
                     className="relative z-10 transition-all duration-500"
-                    style={{ transform: `translateY(${yOffset}px)` }}
                   >
-                    <div className={`rounded-full p-1 transition-all duration-500 ${isActive ? 'border-2 border-rose-500/80 scale-125' : 'border border-transparent opacity-50 hover:opacity-100 hover:scale-110 scale-100'}`}>
-                      <img src={t.image} alt={t.name} className="w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover shadow-2xl" />
+                    <div className={`rounded-full transition-all duration-500 ${isActive ? 'p-1 bg-gradient-to-tr from-yellow-400 via-red-500 to-fuchsia-600 scale-125' : 'p-1 border border-transparent opacity-50 hover:opacity-100 hover:scale-110 scale-100'}`}>
+                      <div className={`rounded-full ${isActive ? 'bg-[#0a0a0f] p-[2px]' : ''}`}>
+                        <img src={t.image} alt={t.name} className="w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover shadow-2xl" />
+                      </div>
                     </div>
                   </button>
                 );

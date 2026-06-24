@@ -156,7 +156,7 @@ export default function Footer() {
                     className="bg-transparent border-none outline-none text-sm w-full text-slate-900 dark:text-slate-100 placeholder:text-slate-500"
                   />
                 </div>
-                <button className="bg-slate-200 hover:bg-slate-300 dark:bg-white dark:hover:bg-gray-200 text-black px-3 py-1.5 rounded-sm flex items-center justify-center transition-colors">
+                <button className="bg-gradient-to-tr from-yellow-400 via-red-500 to-fuchsia-600 hover:opacity-90 text-white px-3 py-1.5 rounded-sm flex items-center justify-center transition-opacity">
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>

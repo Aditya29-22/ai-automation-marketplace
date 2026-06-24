@@ -109,7 +109,7 @@ export default function CartDrawer() {
                       <h4 className="text-sm font-medium text-white line-clamp-2 leading-snug">{item.product.name}</h4>
                       <p className="text-xs text-slate-400 mt-0.5">{item.product.subcategory}</p>
                       <div className="flex items-center justify-between mt-2">
-                        <span className="text-sm font-bold text-[#2786FF]">
+                        <span className="text-sm font-bold text-white">
                           {item.product.isFree ? 'FREE' : `${item.product.currency}${item.product.price.toLocaleString()}`}
                         </span>
                         <button onClick={() => removeFromCart(item.product.id)} className="p-1.5 text-slate-500 hover:text-red-400 hover:bg-red-400/10 rounded-md transition-colors">
@@ -121,13 +121,19 @@ export default function CartDrawer() {
 
                   {!item.product.isFree && (
                     <div className="mt-3 pt-3 border-t border-white/[0.04]">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={item.withMaintenance}
-                          onChange={() => toggleMaintenance(item.product.id)}
-                          className="w-4 h-4 rounded border-slate-600 bg-white/[0.03] text-[#2786FF] focus:ring-[#2786FF]/20"
-                        />
+                      <label className="flex items-center gap-2 cursor-pointer group">
+                        <div className="relative flex items-center justify-center w-4 h-4 rounded border border-slate-600 bg-white/[0.03] group-hover:border-white/20 transition-colors">
+                          <input
+                            type="checkbox"
+                            checked={item.withMaintenance}
+                            onChange={() => toggleMaintenance(item.product.id)}
+                            className="peer absolute inset-0 opacity-0 cursor-pointer"
+                          />
+                          <div className="absolute inset-0 rounded bg-gradient-to-r from-pink-500 to-purple-500 opacity-0 peer-checked:opacity-100 transition-opacity" />
+                          <svg className="w-3 h-3 text-white absolute z-10 opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
                         <span className="text-xs text-slate-300">Add maintenance plan</span>
                       </label>
 
@@ -137,7 +143,7 @@ export default function CartDrawer() {
                             onClick={() => setMaintenanceType(item.product.id, 'monthly')}
                             className={`px-3 py-1.5 text-[11px] rounded-lg border transition-colors ${
                               item.maintenanceType === 'monthly'
-                                ? 'bg-[#2786FF]/10 border-[#2786FF]/30 text-[#2786FF] font-medium'
+                                ? 'bg-white/[0.08] border-white/[0.2] text-white font-medium'
                                 : 'border-white/[0.06] text-slate-400 hover:border-white/[0.1] hover:text-white'
                             }`}
                           >
@@ -147,12 +153,12 @@ export default function CartDrawer() {
                             onClick={() => setMaintenanceType(item.product.id, 'yearly')}
                             className={`px-3 py-1.5 text-[11px] rounded-lg border transition-colors ${
                               item.maintenanceType === 'yearly'
-                                ? 'bg-[#2786FF]/10 border-[#2786FF]/30 text-[#2786FF] font-medium'
+                                ? 'bg-white/[0.08] border-white/[0.2] text-white font-medium'
                                 : 'border-white/[0.06] text-slate-400 hover:border-white/[0.1] hover:text-white'
                             }`}
                           >
                             ₹{item.product.maintenancePlan.yearly}/yr
-                            <span className="ml-1 text-emerald-400 font-bold">Save 17%</span>
+                            <span className="ml-1 text-white font-bold">Save 17%</span>
                           </button>
                         </div>
                       )}

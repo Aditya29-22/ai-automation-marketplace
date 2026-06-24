@@ -224,7 +224,7 @@ export default function Navbar() {
               >
                 <ShoppingCart className="w-4 h-4" />
                 {cart.length > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-cyan-500 text-white text-[8px] font-bold rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-[8px] font-bold rounded-full flex items-center justify-center">
                     {cart.length}
                   </span>
                 )}
