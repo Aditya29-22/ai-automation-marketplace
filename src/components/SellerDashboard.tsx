@@ -18,8 +18,16 @@ export default function SellerDashboard() {
           <h2 className="text-xl font-bold text-white mb-2">Seller Dashboard</h2>
           <p className="text-slate-500 mb-4">Login to manage your automation listings</p>
           <button onClick={() => setAuthModalOpen(true)}
-            className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/10">
-            Sign In
+            className="relative px-6 py-3 text-white font-semibold rounded-xl shadow-lg overflow-hidden group/btn"
+          >
+            <div className="absolute inset-0 -z-10">
+              <div 
+                className="absolute top-1/2 left-1/2 w-[300%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                style={{ animation: 'spin-center 4s linear infinite' }}
+              />
+            </div>
+            <div className="absolute inset-[1px] bg-[#0a0a0f] rounded-[11px] -z-10 transition-colors group-hover/btn:bg-white/5" />
+            <span className="relative z-10">Sign In</span>
           </button>
         </div>
       </div>

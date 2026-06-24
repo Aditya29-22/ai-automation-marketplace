@@ -62,19 +62,19 @@ export default function ProductDetailPage() {
 
             {/* Before/After */}
             <div className="glass rounded-2xl border border-white/[0.04] p-6 mb-6">
-              <h3 className="text-base font-semibold text-white mb-4">Before → After Workflow</h3>
+              <h3 className="text-base font-semibold text-white mb-4 tracking-tight">Before → After Workflow</h3>
               <div className="grid sm:grid-cols-2 gap-4">
-                <div className="p-4 bg-red-500/5 rounded-xl border border-red-500/10">
-                  <p className="text-xs font-semibold text-red-400 uppercase mb-3">❌ Before (Manual)</p>
+                <div className="p-4 bg-white/[0.02] rounded-xl border border-white/[0.04]">
+                  <p className="text-xs font-semibold text-slate-400 uppercase mb-3 tracking-tight">❌ Before (Manual)</p>
                   <div className="space-y-2">
                     {['Receive request manually', 'Copy data to spreadsheet', 'Create document by hand', 'Send via email one by one', 'Track status in head'].map((step, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-red-300/70">
-                        <span className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center text-[10px] font-bold shrink-0">{i + 1}</span>
+                      <div key={i} className="flex items-center gap-2 text-xs text-slate-400">
+                        <span className="w-5 h-5 rounded-full bg-white/[0.05] flex items-center justify-center text-[10px] font-bold shrink-0">{i + 1}</span>
                         {step}
                       </div>
                     ))}
                   </div>
-                  <p className="text-xs text-red-400/50 mt-3 font-medium">~4 hours/day manual work</p>
+                  <p className="text-xs text-slate-500 mt-3 font-medium">~4 hours/day manual work</p>
                 </div>
                 <div className="p-4 bg-emerald-500/5 rounded-xl border border-emerald-500/10">
                   <p className="text-xs font-semibold text-emerald-400 uppercase mb-3">✅ After (Automated)</p>
@@ -207,10 +207,10 @@ export default function ProductDetailPage() {
 
                 <div className="mb-4 pb-4 border-b border-white/[0.04]">
                   {product.isFree ? (
-                    <span className="text-3xl font-extrabold text-emerald-400 font-[Space_Grotesk]">FREE</span>
+                    <span className="text-3xl font-extrabold text-emerald-400 tracking-tight">FREE</span>
                   ) : (
                     <div className="flex items-baseline gap-3">
-                      <span className="text-3xl font-extrabold text-white font-[Space_Grotesk]">{product.currency}{product.price.toLocaleString()}</span>
+                      <span className="text-3xl font-extrabold text-white tracking-tight">{product.currency}{product.price.toLocaleString()}</span>
                       {product.originalPrice > product.price && (
                         <span className="text-lg text-slate-600 line-through">{product.currency}{product.originalPrice.toLocaleString()}</span>
                       )}
@@ -238,24 +238,20 @@ export default function ProductDetailPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 mb-5 p-3 bg-white/[0.02] rounded-xl border border-white/[0.03]">
-                  <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-cyan-500/10">
-                    {product.seller.avatar}
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white flex items-center gap-1">
-                      {product.seller.name}
-                      {product.seller.verified && <CheckCircle className="w-3.5 h-3.5 text-cyan-400" />}
-                    </p>
-                    <p className="text-xs text-slate-500">Verified Seller</p>
-                  </div>
-                </div>
-
                 <div className="space-y-2.5">
                   <button onClick={handleBuyNow}
-                    className="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-cyan-500/10 flex items-center justify-center gap-2 text-sm">
-                    <ShoppingCart className="w-4 h-4" />
-                    {product.isFree ? 'Get for Free' : 'Buy Now'}
+                    className="relative w-full py-3.5 text-white font-semibold rounded-xl shadow-lg overflow-hidden group/btn flex items-center justify-center gap-2 text-sm">
+                    <div className="absolute inset-0 -z-10">
+                      <div 
+                        className="absolute top-1/2 left-1/2 w-[300%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                        style={{ animation: 'spin-center 4s linear infinite' }}
+                      />
+                    </div>
+                    <div className="absolute inset-[1px] bg-[#0a0a0f] rounded-[11px] -z-10 transition-colors group-hover/btn:bg-white/5" />
+                    <span className="relative z-10 flex items-center gap-2">
+                      <ShoppingCart className="w-4 h-4" />
+                      {product.isFree ? 'Get for Free' : 'Buy Now'}
+                    </span>
                   </button>
                   <button onClick={() => addToCart(product)} disabled={inCart}
                     className={`w-full py-3 font-semibold rounded-xl transition-all flex items-center justify-center gap-2 text-sm ${
@@ -291,8 +287,8 @@ export default function ProductDetailPage() {
                   ))}
                 </div>
                 <div className="mt-4 p-4 bg-emerald-500/5 rounded-xl border border-emerald-500/10">
-                  <p className="text-xs text-emerald-400 font-medium mb-1">Monthly savings</p>
-                  <p className="text-2xl font-extrabold text-emerald-400 font-[Space_Grotesk]">₹{roiSavings.toLocaleString()}</p>
+                  <p className="text-xs text-emerald-400 font-medium mb-1 tracking-tight">Monthly savings</p>
+                  <p className="text-2xl font-extrabold text-emerald-400 tracking-tight">₹{roiSavings.toLocaleString()}</p>
                   {product.price > 0 && (
                     <p className="text-xs text-emerald-400/50 mt-1">
                       That&apos;s <span className="font-bold">{roiMultiple}x</span> return on your ₹{product.price.toLocaleString()} investment
@@ -308,7 +304,7 @@ export default function ProductDetailPage() {
                   {[
                     { label: 'Time saved', value: product.roiMetrics.timeSaved, color: 'text-white' },
                     { label: 'Cost reduction', value: product.roiMetrics.costReduction, color: 'text-emerald-400' },
-                    { label: 'Efficiency gain', value: product.roiMetrics.efficiency, color: 'text-cyan-400' },
+                    { label: 'Efficiency gain', value: product.roiMetrics.efficiency, color: 'text-emerald-400' },
                   ].map(m => (
                     <div key={m.label} className="flex items-center justify-between">
                       <span className="text-sm text-slate-500">{m.label}</span>
