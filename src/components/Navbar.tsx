@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search, ShoppingCart, Heart, User, Menu, X, Zap, ChevronDown, Sparkles, MessageSquare, Mail, Users, ShoppingBag, Smartphone, DollarSign, Briefcase, HeadphonesIcon, BarChart, FileText, Settings, Bot, Target, Factory } from 'lucide-react';
+import { BuildForMeButton } from './BuildForMeButton';
 
 const categoryIcons: Record<string, React.ReactNode> = {
   'whatsapp': <MessageSquare className="w-4 h-4" />,
@@ -236,12 +237,7 @@ export default function Navbar() {
                 </button>
               )}
 
-              <button
-                onClick={() => setCustomRequestOpen(true)}
-                className="px-3.5 py-1.5 bg-[#2786FF] hover:bg-blue-600 text-white text-[13px] font-medium rounded-md transition-colors whitespace-nowrap"
-              >
-                Build for Me
-              </button>
+              <BuildForMeButton onClick={() => setCustomRequestOpen(true)} className="ml-2" />
             </div>
 
             {/* Mobile menu toggle */}
@@ -290,12 +286,9 @@ export default function Navbar() {
                   <User className="w-4 h-4" /> Sign In
                 </button>
               )}
-              <button
-                onClick={() => { setCustomRequestOpen(true); setMobileOpen(false); }}
-                className="flex items-center justify-center gap-2 px-3 py-2.5 mt-2 bg-[#2786FF] hover:bg-blue-600 text-white text-[13px] font-medium rounded-lg"
-              >
-                Build for Me
-              </button>
+              <div className="mt-2 w-full">
+                <BuildForMeButton onClick={() => { setCustomRequestOpen(true); setMobileOpen(false); }} className="w-full justify-center" />
+              </div>
             </div>
           </div>
         )}
