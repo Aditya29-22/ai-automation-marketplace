@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Filter, X, SlidersHorizontal } from 'lucide-react';
+import {  SlidersHorizontalIcon as SlidersHorizontal  } from '../lib/icons';
+import { Filter, X } from 'lucide-react';
 import ProductCard from './ProductCard';
 import { products, categories, tools as allTools } from '../data/products';
 import { useStore } from '../store/useStore';

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Download, Heart, Package, FileText, Trash2, ShoppingBag, ExternalLink, User } from 'lucide-react';
+import {  DownloadIcon as Download, HeartIcon as Heart, Trash2Icon as Trash2, ShoppingBagIcon as ShoppingBag, ExternalLinkIcon as ExternalLink, UserIcon as User  } from '../lib/icons';
+import { Package, FileText } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 const carouselTexts = [
@@ -83,9 +84,15 @@ export default function DashboardPage() {
 
             <button 
               onClick={() => setAuthModalOpen(true)}
-              className="w-full py-4 bg-[#2786FF] hover:bg-blue-600 text-white font-medium rounded-xl transition-all text-[15px]"
+              className="relative w-full py-4 text-white font-medium rounded-xl transition-all text-[15px] overflow-hidden group/btn"
             >
-              Sign In
+              <div className="absolute inset-0 -z-10">
+                <div 
+                  className="absolute top-1/2 left-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                  style={{ animation: 'spin-center 4s linear infinite' }}
+                />
+              </div>
+              <span className="relative z-10">Sign In</span>
             </button>
           </div>
         </div>

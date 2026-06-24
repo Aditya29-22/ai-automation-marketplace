@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Star, ShoppingCart, Heart, Clock, CheckCircle, Shield, Download, Play, Package, FileText, Video, Headphones, Calculator, ArrowLeft } from 'lucide-react';
+import {  StarIcon as Star, ShoppingCartIcon as ShoppingCart, HeartIcon as Heart, DownloadIcon as Download, PlayIcon as Play, HeadphonesIcon as Headphones  } from '../lib/icons';
+import { Clock, CheckCircle, Shield, Package, FileText, Video, Calculator, ArrowLeft } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { products, tools as allTools } from '../data/products';
 

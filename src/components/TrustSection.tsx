@@ -1,6 +1,7 @@
 import { useState, cloneElement } from 'react';
-import { Shield, Zap, Clock, BadgeCheck, RefreshCcw, Headphones, Star, Quote, TrendingUp, Users, Award, ChevronLeft, ChevronRight, ArrowUpRight, ArrowRight } from 'lucide-react';
-
+import { StarIcon as Star, TrendingUpIcon as TrendingUp, UsersIcon as Users, ChevronLeftIcon as ChevronLeft, ChevronRightIcon as ChevronRight  } from '../lib/icons';
+import { Quote, Award, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { CircleCheckBigIcon as BadgeCheck, ShieldCheckIcon as Shield, ZapIcon as Zap, RocketIcon as Clock, SparklesIcon as RefreshCcw, HeadphonesIcon as Headphones } from '@animateicons/react/lucide';
 const testimonials = [
   {
     name: 'Rajesh Kumar',
@@ -69,11 +70,11 @@ export default function TrustSection() {
   return (
     <>
       {/* Trust Badges */}
-      <section className="py-24 bg-[#111] relative">
+      <section className="py-24 bg-[#0a0a0f] relative border-t border-white/[0.04]">
         <div className="absolute inset-0 aurora-bg opacity-30" />
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-5xl font-medium text-white tracking-tight mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight mb-4 leading-tight">
               Why 500+ Businesses Trust Us
             </h2>
             <p className="text-slate-400 text-lg max-w-lg mx-auto">Every automation is verified, tested, and backed by our guarantee</p>
@@ -96,7 +97,7 @@ export default function TrustSection() {
                   )}
 
                   {/* Animated border gradient */}
-                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] z-0 animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(255,255,255,0.4)_360deg)] transition-opacity duration-500 ${isLarge ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] z-0 animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_280deg,#ec4899_320deg,#a855f7_360deg)] transition-opacity duration-500 ${isLarge ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
                   
                   {/* Inner background mask */}
                   <div className={`absolute inset-[1px] z-0 rounded-[calc(1.5rem-1px)] transition-colors duration-500 ${isLarge ? 'bg-gradient-to-br from-[#0f0f13] to-[#050508]' : 'bg-[#0a0a0f]'}`} />
@@ -124,21 +125,21 @@ export default function TrustSection() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-[#fafafa] dark:bg-[#111] transition-colors duration-300 relative overflow-hidden">
+      <section className="py-24 bg-[#0a0a0f] border-t border-white/[0.04] relative overflow-hidden">
         <div className="absolute inset-0" style={{
           background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168,85,247,0.03), transparent)'
         }} />
         <div className="relative max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-5xl font-medium text-slate-900 dark:text-white tracking-tight mb-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight mb-4 leading-tight">
               Loved by Business Owners
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg">Real results from real businesses</p>
+            <p className="text-slate-400 text-lg">Real results from real businesses</p>
           </div>
 
           <div className="max-w-4xl mx-auto relative mt-16 sm:mt-24 mb-12 sm:mb-20">
             {/* Wavy Background Path */}
-            <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 text-slate-900/[0.05] dark:text-white/[0.05] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1000 100" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 6">
+            <svg className="absolute top-1/2 left-0 w-full h-32 -translate-y-1/2 text-white/[0.05] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1000 100" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 6">
               <path d="M-100,50 Q250,0 500,50 T1100,50" />
             </svg>
             
@@ -168,24 +169,24 @@ export default function TrustSection() {
           <div className="flex items-center gap-4 sm:gap-8 max-w-3xl mx-auto relative z-20">
             <button 
               onClick={() => setActiveIndex(prev => (prev === 0 ? testimonials.length - 1 : prev - 1))}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-colors shrink-0"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/[0.08] flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/[0.05] transition-colors shrink-0"
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             <div className="flex-1 min-h-[160px] flex flex-col justify-center items-center text-center">
-              <p className="text-lg sm:text-2xl text-slate-700 dark:text-slate-200 leading-relaxed font-light mb-8 transition-opacity duration-300">
+              <p className="text-lg sm:text-2xl text-slate-200 leading-relaxed font-light mb-8 transition-opacity duration-300">
                 &ldquo;{testimonials[activeIndex].text}&rdquo;
               </p>
               <div>
-                <p className="text-slate-900 dark:text-white font-medium mb-1">{testimonials[activeIndex].name}</p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">{testimonials[activeIndex].role}</p>
+                <p className="text-white font-medium mb-1">{testimonials[activeIndex].name}</p>
+                <p className="text-sm text-slate-400">{testimonials[activeIndex].role}</p>
               </div>
             </div>
 
             <button 
               onClick={() => setActiveIndex(prev => (prev === testimonials.length - 1 ? 0 : prev + 1))}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-colors shrink-0"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/[0.08] flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/[0.05] transition-colors shrink-0"
             >
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
@@ -193,80 +194,6 @@ export default function TrustSection() {
         </div>
       </section>
 
-      {/* Case Studies & Stats (Redesigned) */}
-      <section className="py-24 bg-[#fafafa] dark:bg-[#111] transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          
-          {/* Top Part: Stats */}
-          <div className="flex flex-col md:flex-row gap-16 md:gap-8 mb-24">
-            {/* Left */}
-            <div className="flex-1 md:pr-12">
-              <h2 className="text-4xl sm:text-5xl font-medium text-slate-900 dark:text-white tracking-tight mb-6" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                Real Results,<br/>Real Numbers
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed mb-10 max-w-md">
-                Case studies from businesses using our automations.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <button className="px-6 py-2.5 text-white rounded-full font-medium text-sm hover:scale-105 transition-transform" style={{ backgroundColor: '#2786FF' }}>
-                  Get in touch
-                </button>
-                <button className="px-6 py-2.5 bg-transparent border border-slate-300 dark:border-white/[0.2] text-slate-900 dark:text-white rounded-full font-medium text-sm hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-colors">
-                  Case studies
-                </button>
-              </div>
-            </div>
-            
-            {/* Right Stats */}
-            <div className="flex-1 grid grid-cols-2 gap-x-8 gap-y-12">
-              {[
-                { value: '500+', label: 'Happy Customers' },
-                { value: '1,200+', label: 'Automations Sold' },
-                { value: '₹2Cr+', label: 'Saved for Clients' },
-                { value: '99%', label: 'Success Rate' },
-              ].map((stat, i) => (
-                <div key={i} className="border-t border-slate-300 dark:border-white/[0.2] pt-6 flex flex-col justify-between h-full">
-                  <div>
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">{stat.label}</p>
-                  </div>
-                  <p className="text-5xl sm:text-[3.5rem] font-normal text-slate-900 dark:text-white mt-8 tracking-tighter" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                    {stat.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom Part: Case Studies */}
-          <div className="border-t border-slate-200 dark:border-white/[0.08] pt-16">
-            <h3 className="text-2xl font-medium text-slate-900 dark:text-white mb-12" style={{ fontFamily: 'system-ui, sans-serif' }}>
-              Trusted by great companies
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-              {caseStudies.map((cs, i) => (
-                <div key={i} className="border-t border-slate-300 dark:border-white/[0.2] pt-6 flex flex-col h-full group cursor-pointer">
-                  <div className="overflow-hidden rounded-xl mb-6 shadow-lg aspect-[4/3] bg-slate-100 dark:bg-[#151515]">
-                    <img src={cs.image} alt={cs.company} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  <p className="text-sm font-medium text-slate-900 dark:text-white mb-6 min-h-[40px] leading-relaxed pr-4">
-                    {cs.label} for {cs.company}
-                  </p>
-                  <p className="text-[3.5rem] sm:text-[4rem] font-normal text-slate-900 dark:text-white mb-4 tracking-tighter" style={{ fontFamily: 'system-ui, sans-serif' }}>
-                    {cs.metric}
-                  </p>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
-                    {cs.description}
-                  </p>
-                  <div className="mt-auto flex items-center text-sm font-medium text-[#2786FF]">
-                    Read Case Study
-                    <ArrowRight className="w-4 h-4 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

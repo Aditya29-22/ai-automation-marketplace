@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { BarChart3, Package, Star, DollarSign, TrendingUp, Plus, Eye, Edit2, Trash2, CheckCircle } from 'lucide-react';
+import {  StarIcon as Star, DollarSignIcon as DollarSign, TrendingUpIcon as TrendingUp, PlusIcon as Plus, EyeIcon as Eye, Trash2Icon as Trash2  } from '../lib/icons';
+import { BarChart3, Package, Edit2, CheckCircle } from 'lucide-react';
 import { products } from '../data/products';
 import { useStore } from '../store/useStore';
 

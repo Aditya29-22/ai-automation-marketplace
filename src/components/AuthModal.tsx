@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { X, Mail, Lock, User, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import {  MailIcon as Mail, LockIcon as Lock, UserIcon as User, EyeIcon as Eye, EyeOffIcon as EyeOff  } from '../lib/icons';
+import { X, ArrowRight } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 export default function AuthModal() {

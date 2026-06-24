@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Bot, ShoppingCart } from 'lucide-react';
+import {  MessageCircleIcon as MessageCircle, SendIcon as Send, ShoppingCartIcon as ShoppingCart  } from '../lib/icons';
+import { X, Bot } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { products } from '../data/products';
 import type { Product } from '../data/products';

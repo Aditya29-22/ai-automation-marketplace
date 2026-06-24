@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Shield, Lock, CheckCircle, Download, ArrowLeft, Sparkles } from 'lucide-react';
+import {  LockIcon as Lock, DownloadIcon as Download, SparklesIcon as Sparkles  } from '../lib/icons';
+import { Shield, CheckCircle, ArrowLeft } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 export default function CheckoutPage() {

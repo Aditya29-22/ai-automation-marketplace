@@ -166,6 +166,83 @@ body {
   animation: blob-morph 8s ease-in-out infinite;
 }
 
+@keyframes auto-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 1rem)); } /* -1rem accounts for the gap */
+}
+
+.animate-auto-scroll {
+  animation: auto-scroll 30s linear infinite;
+}
+
+.animate-auto-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* 3D Carousel */
+.carousel-3d-wrapper {
+  width: 100%;
+  height: 550px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-3d-inner {
+  --w: 160px;
+  --h: 220px;
+  --translateZ: calc((var(--w) + var(--h)) + 60px);
+  --rotateX: -10deg;
+  --perspective: 1200px;
+  position: absolute;
+  width: var(--w);
+  height: var(--h);
+  top: 25%;
+  left: calc(50% - (var(--w) / 2));
+  z-index: 2;
+  transform-style: preserve-3d;
+  transform: perspective(var(--perspective));
+  animation: rotating-3d 35s linear infinite;
+}
+
+.carousel-3d-inner:has(.carousel-3d-card:hover) {
+  animation-play-state: paused;
+}
+
+@keyframes rotating-3d {
+  from {
+    transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0turn);
+  }
+  to {
+    transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn);
+  }
+}
+
+.carousel-3d-card {
+  position: absolute;
+  border: 2px solid rgba(var(--color-card), 0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  inset: 0;
+  transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ));
+  background: radial-gradient(circle, rgba(var(--color-card), 0.1) 0%, rgba(var(--color-card), 0.4) 80%, rgba(var(--color-card), 0.8) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  cursor: pointer;
+  transition: filter 0.3s, transform 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-3d-card:hover {
+  filter: brightness(1.3);
+}
+
 @keyframes spin-center {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }

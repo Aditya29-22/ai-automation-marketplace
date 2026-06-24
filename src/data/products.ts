@@ -50,20 +50,20 @@ export interface Review {
 }
 
 export const categories = [
-  { id: 'whatsapp', name: 'WhatsApp Automation', icon: '💬', count: 24 },
-  { id: 'email', name: 'Email Automation', icon: '📧', count: 31 },
-  { id: 'crm', name: 'CRM Automation', icon: '🤝', count: 18 },
-  { id: 'ecommerce', name: 'E-Commerce', icon: '🛒', count: 22 },
-  { id: 'social-media', name: 'Social Media', icon: '📱', count: 27 },
-  { id: 'finance', name: 'Finance & Invoicing', icon: '💰', count: 15 },
-  { id: 'hr', name: 'HR & Recruitment', icon: '👥', count: 12 },
-  { id: 'customer-support', name: 'Customer Support', icon: '🎧', count: 19 },
-  { id: 'data-analytics', name: 'Data & Analytics', icon: '📊', count: 14 },
-  { id: 'document', name: 'Document Processing', icon: '📄', count: 11 },
-  { id: 'bpa', name: 'Business Process', icon: '⚙️', count: 20 },
-  { id: 'rpa', name: 'RPA Bots', icon: '🤖', count: 16 },
-  { id: 'marketing', name: 'Marketing Automation', icon: '🎯', count: 25 },
-  { id: 'industrial', name: 'Industrial IoT', icon: '🏭', count: 8 },
+  { id: 'whatsapp', name: 'WhatsApp Automation', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=200&h=200', count: 24 },
+  { id: 'email', name: 'Email Automation', image: 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&q=80&w=200&h=200', count: 31 },
+  { id: 'crm', name: 'CRM Automation', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=200&h=200', count: 18 },
+  { id: 'ecommerce', name: 'E-Commerce', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=200&h=200', count: 22 },
+  { id: 'social-media', name: 'Social Media', image: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&q=80&w=200&h=200', count: 27 },
+  { id: 'finance', name: 'Finance & Invoicing', image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=200&h=200', count: 15 },
+  { id: 'hr', name: 'HR & Recruitment', image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=200&h=200', count: 12 },
+  { id: 'customer-support', name: 'Customer Support', image: 'https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&q=80&w=200&h=200', count: 19 },
+  { id: 'data-analytics', name: 'Data & Analytics', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=200&h=200', count: 14 },
+  { id: 'document', name: 'Document Processing', image: 'https://images.unsplash.com/photo-1618044733300-9472054094ee?auto=format&fit=crop&q=80&w=200&h=200', count: 11 },
+  { id: 'bpa', name: 'Business Process', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=200&h=200', count: 20 },
+  { id: 'rpa', name: 'RPA Bots', image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=200&h=200', count: 16 },
+  { id: 'marketing', name: 'Marketing Automation', image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&q=80&w=200&h=200', count: 25 },
+  { id: 'industrial', name: 'Industrial IoT', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=200&h=200', count: 8 },
 ];
 
 export const tools = [

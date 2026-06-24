@@ -1,4 +1,5 @@
-import { Zap, Mail, Phone, MapPin, ArrowUpRight, Globe, MessageSquare, Briefcase, Heart } from 'lucide-react';
+import {  ZapIcon as Zap, MailIcon as Mail, PhoneIcon as Phone, MapPinIcon as MapPin, GlobeIcon as Globe, HeartIcon as Heart  } from '../lib/icons';
+import { ArrowUpRight, MessageSquare, Briefcase } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { useState, useEffect, useRef } from 'react';
 
@@ -26,15 +27,15 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#fafafa] dark:bg-[#151515] text-slate-900 dark:text-slate-100 transition-colors duration-300 border-t border-slate-200 dark:border-white/[0.08]">
+    <footer className="bg-[#0a0a0f] text-slate-100 border-t border-white/[0.04]">
       {/* CTA Section */}
-      <div className="w-full bg-[#fafafa] dark:bg-[#111] py-24 transition-colors duration-300 border-b border-slate-200 dark:border-white/[0.08]">
+      <div className="w-full bg-[#0a0a0f] py-24 border-b border-white/[0.04]">
         <div className="max-w-7xl mx-auto px-4 text-center flex flex-col items-center justify-center">
           <div className="relative z-10 w-full flex flex-col items-center">
-            <h2 className="text-4xl sm:text-[3.5rem] font-medium text-slate-900 dark:text-white tracking-tight mb-6 leading-tight" style={{ fontFamily: 'system-ui, sans-serif' }}>
+            <h2 className="text-4xl sm:text-[3.5rem] font-semibold text-white tracking-tight mb-6 leading-tight">
               Can&apos;t Find What You Need?
             </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg mb-12 max-w-lg mx-auto leading-relaxed">
+            <p className="text-slate-400 text-lg mb-12 max-w-lg mx-auto leading-relaxed">
               Tell us what you want automated and we&apos;ll build it for you. Custom automations starting at ₹9,999.
             </p>
             
@@ -165,10 +166,10 @@ export default function Footer() {
       </div>
 
       {/* Marquee Section */}
-      <div className="border-t border-b border-slate-200 dark:border-white/[0.08] overflow-hidden bg-[#fafafa] dark:bg-[#151515]">
+      <div className="border-t border-b border-white/[0.04] overflow-hidden bg-[#0a0a0f]">
         <div className="flex whitespace-nowrap animate-[marquee_20s_linear_infinite]">
           {[...Array(6)].map((_, i) => (
-            <div key={i} className="flex items-center text-7xl md:text-[8.5rem] font-black tracking-[-0.05em] uppercase shrink-0 px-6 py-2 opacity-90 dark:opacity-100 text-slate-800 dark:text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+            <div key={i} className="flex items-center text-7xl md:text-[8.5rem] font-black tracking-[-0.05em] uppercase shrink-0 px-6 py-2 opacity-100 text-white" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
               AUTOMATE STORE <span className="mx-6 opacity-30">✦</span>
             </div>
           ))}

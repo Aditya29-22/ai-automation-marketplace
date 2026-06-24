@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Send, CheckCircle, Zap, Clock, Shield, Sparkles, X, ArrowUpRight, ChevronDown } from 'lucide-react';
+import {  SendIcon as Send, ZapIcon as Zap, SparklesIcon as Sparkles, ChevronDownIcon as ChevronDown  } from '../lib/icons';
+import { CheckCircle, Clock, Shield, X, ArrowUpRight } from 'lucide-react';
 import { COUNTRY_CODES } from '../data/countryCodes';
 
 export default function CustomRequestPage({ isOpen, onClose }: { isOpen?: boolean, onClose?: () => void }) {

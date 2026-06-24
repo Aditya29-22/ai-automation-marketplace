@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { Search, ArrowUpRight, Shield, Zap, Clock, Terminal, Cpu, Workflow } from 'lucide-react';
+import {  SearchIcon as Search, ZapIcon as Zap, TerminalIcon as Terminal  } from '../lib/icons';
+import { ArrowUpRight, Shield, Clock, Cpu, Workflow } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
@@ -500,9 +501,26 @@ export default function HeroSection() {
 
             {/* Arrow */}
             <div className="hidden md:flex items-end justify-end p-6 md:col-span-1 min-h-[240px]">
-              <svg className="w-24 h-24 text-slate-900 dark:text-white opacity-90 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter">
-                <path d="M6 6h12v12M18 6L6 18" />
-              </svg>
+              <div className="group cursor-default">
+                <div 
+                  className="relative w-24 h-24 overflow-hidden z-10 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-300"
+                  style={{
+                    maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpath d='M6 6h12v12M18 6L6 18'/%3E%3C/svg%3E")`,
+                    maskSize: 'contain',
+                    maskRepeat: 'no-repeat',
+                    maskPosition: 'center',
+                    WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1' stroke-linecap='square' stroke-linejoin='miter'%3E%3Cpath d='M6 6h12v12M18 6L6 18'/%3E%3C/svg%3E")`,
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                  }}
+                >
+                  <div 
+                    className="absolute top-1/2 left-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                    style={{ animation: 'spin-center 4s linear infinite' }}
+                  />
+                </div>
+              </div>
             </div>
 
           </div>

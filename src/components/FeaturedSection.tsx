@@ -1,4 +1,5 @@
-import { ArrowRight, Flame, Gift, Zap } from 'lucide-react';
+import {  FlameIcon as Flame, ZapIcon as Zap  } from '../lib/icons';
+import { ArrowUpRight, Gift } from 'lucide-react';
 import ProductCard from './ProductCard';
 import { products } from '../data/products';
 import { useStore } from '../store/useStore';
@@ -12,28 +13,28 @@ export default function FeaturedSection() {
   return (
     <>
       {/* Bestsellers */}
-      <section className="py-20 bg-[#0a0a0f] relative">
-        <div className="absolute inset-0 aurora-bg" />
+      <section className="py-20 bg-[#0a0a0f] relative border-t border-white/[0.04]">
+        <div className="absolute inset-0 aurora-bg opacity-30" />
         <div className="relative max-w-7xl mx-auto px-4">
-          <div className="flex items-end justify-between mb-10">
+          <div className="flex items-end justify-between mb-12">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Flame className="w-4 h-4 text-amber-400" />
-                <span className="text-[11px] font-mono text-amber-400 uppercase tracking-[0.2em]">Most Popular</span>
+              <div className="flex items-center gap-2 mb-3">
+                <Flame className="w-4 h-4 text-white" />
+                <span className="text-[11px] font-mono font-bold text-white uppercase tracking-widest">Most Popular</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-[Space_Grotesk]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
                 Bestselling Automations
               </h2>
             </div>
             <button
               onClick={() => setCurrentPage('marketplace')}
-              className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-cyan-400 hover:text-cyan-300 hover:gap-2.5 transition-all group"
+              className="hidden sm:flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase text-white hover:text-slate-300 transition-all group"
             >
-              View All <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              View All <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {featured.map((p, i) => (
               <ProductCard key={p.id} product={p} index={i} />
             ))}
@@ -42,31 +43,31 @@ export default function FeaturedSection() {
       </section>
 
       {/* Free Section */}
-      <section className="py-20 bg-[#0a0a0f] relative">
+      <section className="py-20 bg-[#0a0a0f] relative border-t border-white/[0.04]">
         <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(16,185,129,0.04), transparent)'
+          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(255,255,255,0.02), transparent)'
         }} />
         <div className="relative max-w-7xl mx-auto px-4">
-          <div className="flex items-end justify-between mb-10">
+          <div className="flex items-end justify-between mb-12">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Gift className="w-4 h-4 text-emerald-400" />
-                <span className="text-[11px] font-mono text-emerald-400 uppercase tracking-[0.2em]">No Cost</span>
+              <div className="flex items-center gap-2 mb-3">
+                <Gift className="w-4 h-4 text-white" />
+                <span className="text-[11px] font-mono font-bold text-white uppercase tracking-widest">No Cost</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-[Space_Grotesk]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
                 Free Automations
               </h2>
-              <p className="text-slate-500 mt-1">Start automating without spending a single rupee</p>
+              <p className="text-slate-400 mt-2 text-lg">Start automating without spending a single rupee.</p>
             </div>
             <button
               onClick={() => { setCurrentPage('free'); }}
-              className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-emerald-400 hover:text-emerald-300 hover:gap-2.5 transition-all group"
+              className="hidden sm:flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase text-white hover:text-slate-300 transition-all group"
             >
-              See All Free <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              See All Free <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {freeProducts.map((p, i) => (
               <ProductCard key={p.id} product={p} index={i} />
             ))}
@@ -75,24 +76,24 @@ export default function FeaturedSection() {
       </section>
 
       {/* New Arrivals */}
-      <section className="py-20 bg-[#0a0a0f] relative">
+      <section className="py-20 bg-[#0a0a0f] relative border-t border-white/[0.04]">
         <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse 60% 40% at 70% 30%, rgba(0,212,255,0.04), transparent)'
+          background: 'radial-gradient(ellipse 60% 40% at 70% 30%, rgba(255,255,255,0.02), transparent)'
         }} />
         <div className="relative max-w-7xl mx-auto px-4">
-          <div className="flex items-end justify-between mb-10">
+          <div className="flex items-end justify-between mb-12">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Zap className="w-4 h-4 text-cyan-400" />
-                <span className="text-[11px] font-mono text-cyan-400 uppercase tracking-[0.2em]">Just Added</span>
+              <div className="flex items-center gap-2 mb-3">
+                <Zap className="w-4 h-4 text-white" />
+                <span className="text-[11px] font-mono font-bold text-white uppercase tracking-widest">Just Added</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-[Space_Grotesk]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white leading-tight">
                 New Arrivals
               </h2>
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {newProducts.map((p, i) => (
               <ProductCard key={p.id} product={p} index={i} />
             ))}

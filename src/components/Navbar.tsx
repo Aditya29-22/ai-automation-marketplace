@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Search, ShoppingCart, Heart, User, Menu, X, Zap, ChevronDown, Sparkles, MessageSquare, Mail, Users, ShoppingBag, Smartphone, DollarSign, Briefcase, HeadphonesIcon, BarChart, FileText, Settings, Bot, Target, Factory } from 'lucide-react';
+import {  SearchIcon as Search, ShoppingCartIcon as ShoppingCart, HeartIcon as Heart, UserIcon as User, MenuIcon as Menu, ZapIcon as Zap, ChevronDownIcon as ChevronDown, SparklesIcon as Sparkles, MailIcon as Mail, UsersIcon as Users, ShoppingBagIcon as ShoppingBag, DollarSignIcon as DollarSign, SettingsIcon as Settings  } from '../lib/icons';
+import { X, MessageSquare, Smartphone, Briefcase, HeadphonesIcon, BarChart, FileText, Bot, Target, Factory } from 'lucide-react';
 import { BuildForMeButton } from './BuildForMeButton';
 
 const categoryIcons: Record<string, React.ReactNode> = {
