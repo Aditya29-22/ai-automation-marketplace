@@ -194,6 +194,29 @@ body {
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+.ide-border-mask {
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px; /* 16px (rounded-2xl) + 4px (border width) */
+  padding: 4px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.ide-border-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400%;
+  aspect-ratio: 1;
+  background: conic-gradient(from 0deg, transparent 0deg, #ec4899 90deg, #ef4444 180deg, #a855f7 270deg, transparent 360deg);
+  animation: spin-center 6s linear infinite;
+}
+
 .stagger-1 { animation-delay: 0.05s; opacity: 0; }
 .stagger-2 { animation-delay: 0.1s; opacity: 0; }
 .stagger-3 { animation-delay: 0.15s; opacity: 0; }
