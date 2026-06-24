@@ -1,5 +1,5 @@
 import { useState, cloneElement } from 'react';
-import { Shield, Zap, Clock, BadgeCheck, RefreshCcw, Headphones, Star, Quote, TrendingUp, Users, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Shield, Zap, Clock, BadgeCheck, RefreshCcw, Headphones, Star, Quote, TrendingUp, Users, Award, ChevronLeft, ChevronRight, ArrowUpRight, ArrowRight } from 'lucide-react';
 
 const testimonials = [
   {
@@ -35,6 +35,7 @@ const caseStudies = [
     metric: '85%',
     label: 'Less manual work',
     description: 'Automated their entire onboarding flow, saving 20+ hours per week.',
+    image: 'https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=300&w=400',
   },
   {
     company: 'FashionBrand Co',
@@ -42,6 +43,7 @@ const caseStudies = [
     metric: '₹2.5L',
     label: 'Saved per month',
     description: 'Order processing, inventory sync, and customer notifications — fully automated.',
+    image: 'https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=300&w=400',
   },
   {
     company: 'ConsultFirm LLP',
@@ -49,6 +51,7 @@ const caseStudies = [
     metric: '3x',
     label: 'More clients served',
     description: 'Invoice generation, follow-ups, and reporting run without human intervention.',
+    image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=300&w=400',
   },
 ];
 
@@ -96,13 +99,10 @@ export default function TrustSection() {
                   <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] z-0 animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_300deg,rgba(255,255,255,0.4)_360deg)] transition-opacity duration-500 ${isLarge ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
                   
                   {/* Inner background mask */}
-                  <div className={`absolute inset-[1px] z-0 rounded-[calc(1.5rem-1px)] transition-colors duration-500 ${isLarge ? 'bg-gradient-to-br from-[#0f0f13] to-[#050508]' : 'bg-[#0a0a0f] group-hover:bg-[#0f0f13]'}`} />
-
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-t from-white/[0.02] to-transparent pointer-events-none z-0" />
+                  <div className={`absolute inset-[1px] z-0 rounded-[calc(1.5rem-1px)] transition-colors duration-500 ${isLarge ? 'bg-gradient-to-br from-[#0f0f13] to-[#050508]' : 'bg-[#0a0a0f]'}`} />
 
                   {/* Graphic */}
-                  <div className="absolute -top-8 -right-8 w-40 h-[138px] opacity-30 group-hover:opacity-70 transition-all duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-2 pointer-events-none z-0">
+                  <div className="absolute -top-8 -right-8 w-40 h-[138px] opacity-30 transition-all duration-700 ease-out pointer-events-none z-0">
                     <div className="w-full h-full bg-[#1c1c1c] border border-white/[0.05] flex items-center justify-center shadow-2xl text-white pt-6 sm:pt-10" style={{ clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)' }}>
                       {cloneElement(item.icon as React.ReactElement, { className: isLarge ? "w-20 h-20" : "w-12 h-12" })}
                     </div>
@@ -111,7 +111,7 @@ export default function TrustSection() {
                   {/* Text Content */}
                   <div className="relative z-10 mt-auto">
                     <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                      <div className={`w-2 h-2 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)] ${isLarge ? 'bg-cyan-400' : 'bg-white/40 group-hover:bg-cyan-400'}`} />
+                      <div className={`w-2 h-2 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)] ${isLarge ? 'bg-cyan-400' : 'bg-white/40'}`} />
                       <h3 className={`font-medium text-white tracking-wide ${isLarge ? 'text-xl sm:text-2xl' : 'text-lg'}`}>{item.title}</h3>
                     </div>
                     <p className={`text-slate-400 leading-relaxed ${isLarge ? 'text-sm sm:text-base max-w-sm' : 'text-xs sm:text-sm'}`}>{item.desc}</p>
@@ -208,7 +208,7 @@ export default function TrustSection() {
                 Case studies from businesses using our automations.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button className="px-6 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:scale-105 transition-transform">
+                <button className="px-6 py-2.5 text-white rounded-full font-medium text-sm hover:scale-105 transition-transform" style={{ backgroundColor: '#2786FF' }}>
                   Get in touch
                 </button>
                 <button className="px-6 py-2.5 bg-transparent border border-slate-300 dark:border-white/[0.2] text-slate-900 dark:text-white rounded-full font-medium text-sm hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-colors">
@@ -245,19 +245,21 @@ export default function TrustSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
               {caseStudies.map((cs, i) => (
                 <div key={i} className="border-t border-slate-300 dark:border-white/[0.2] pt-6 flex flex-col h-full group cursor-pointer">
-                  <p className="text-sm font-medium text-slate-900 dark:text-white mb-8 min-h-[40px] leading-relaxed pr-4">
+                  <div className="overflow-hidden rounded-xl mb-6 shadow-lg aspect-[4/3] bg-slate-100 dark:bg-[#151515]">
+                    <img src={cs.image} alt={cs.company} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <p className="text-sm font-medium text-slate-900 dark:text-white mb-6 min-h-[40px] leading-relaxed pr-4">
                     {cs.label} for {cs.company}
                   </p>
                   <p className="text-[3.5rem] sm:text-[4rem] font-normal text-slate-900 dark:text-white mb-4 tracking-tighter" style={{ fontFamily: 'system-ui, sans-serif' }}>
                     {cs.metric}
                   </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-12 flex-1 pr-4">
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-8 leading-relaxed">
                     {cs.description}
                   </p>
-                  <div className="mt-auto">
-                    <span className="text-sm font-medium text-slate-900 dark:text-white underline underline-offset-4 decoration-slate-300 dark:decoration-slate-600 group-hover:decoration-slate-900 dark:group-hover:decoration-white transition-colors">
-                      Read Case Study
-                    </span>
+                  <div className="mt-auto flex items-center text-sm font-medium text-[#2786FF]">
+                    Read Case Study
+                    <ArrowRight className="w-4 h-4 ml-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                   </div>
                 </div>
               ))}

@@ -38,9 +38,10 @@ function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; s
 
 export default function HeroSection() {
   const [query, setQuery] = useState('');
-  const { setSearchQuery, setCurrentPage } = useStore();
+  const { setSearchQuery, setCurrentPage, setCustomRequestOpen } = useStore();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const heroRef = useRef<HTMLDivElement>(null);
+  const hoverTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleMouse = (e: MouseEvent) => {
@@ -67,7 +68,7 @@ export default function HeroSection() {
   const popularSearches = ['WhatsApp Bot', 'Invoice Automation', 'Email Sequence', 'Lead Scoring', 'Social Media'];
 
   return (
-    <section ref={heroRef} className="relative min-h-[90vh] overflow-hidden bg-[#0a0a0f] flex items-center">
+    <section ref={heroRef} className="relative min-h-[90vh] overflow-hidden bg-[#fafafa] dark:bg-[#111] transition-colors duration-300 flex items-center">
       {/* Animated background layers */}
       <div className="absolute inset-0">
         {/* Grid */}
@@ -110,7 +111,7 @@ export default function HeroSection() {
           {/* Left content */}
           <div className="animate-fade-in-up">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/5 border border-cyan-500/20 rounded-full text-xs font-medium text-cyan-400 mb-8 backdrop-blur-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/5 dark:bg-cyan-500/10 border border-cyan-500/20 rounded-full text-xs font-medium text-cyan-600 dark:text-cyan-400 mb-8 backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
@@ -118,16 +119,16 @@ export default function HeroSection() {
               India's #1 AI Automation Marketplace
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-6 font-[Space_Grotesk] tracking-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.05] mb-6 font-[Space_Grotesk] tracking-tight transition-colors">
               Buy Ready-Made
               <br />
               <span className="gradient-text">AI Automations</span>
               <br />
-              <span className="text-3xl sm:text-4xl lg:text-5xl font-medium text-slate-500">Save 100+ hrs/month</span>
+              <span className="text-3xl sm:text-4xl lg:text-5xl font-medium text-slate-500 dark:text-slate-400 transition-colors">Save 100+ hrs/month</span>
             </h1>
 
-            <p className="text-lg text-slate-400 mb-8 leading-relaxed max-w-lg">
-              Pre-built, tested, and ready to deploy. From WhatsApp bots to CRM pipelines — set up in minutes, not weeks. Starting at <span className="font-semibold text-emerald-400 font-mono">₹0</span>.
+            <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed max-w-lg transition-colors">
+              Pre-built, tested, and ready to deploy. From WhatsApp bots to CRM pipelines — set up in minutes, not weeks. Starting at <span className="font-semibold text-emerald-500 dark:text-emerald-400 font-mono">₹0</span>.
             </p>
 
             {/* Search bar */}
@@ -135,13 +136,13 @@ export default function HeroSection() {
               <div className="relative flex items-center max-w-lg group">
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity" />
                 <div className="relative w-full flex items-center">
-                  <Search className="absolute left-4 w-5 h-5 text-slate-500 group-focus-within:text-cyan-400 transition-colors" />
+                  <Search className="absolute left-4 w-5 h-5 text-slate-400 dark:text-slate-500 group-focus-within:text-cyan-500 dark:group-focus-within:text-cyan-400 transition-colors" />
                   <input
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder='Try "automate my invoices" or "WhatsApp bot"'
-                    className="w-full pl-12 pr-36 py-4 bg-white/[0.03] border border-white/[0.08] rounded-2xl text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/30 focus:bg-white/[0.05] focus:shadow-[0_0_40px_rgba(0,212,255,0.1)] transition-all"
+                    className="w-full pl-12 pr-36 py-4 bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/[0.08] rounded-2xl text-sm text-slate-900 dark:text-slate-200 placeholder:text-slate-500 dark:placeholder:text-slate-600 focus:outline-none focus:border-cyan-500/30 focus:bg-white dark:focus:bg-white/[0.05] focus:shadow-[0_0_40px_rgba(0,212,255,0.1)] transition-all shadow-sm dark:shadow-none"
                   />
                   <button
                     type="submit"
@@ -155,12 +156,12 @@ export default function HeroSection() {
 
             {/* Popular searches */}
             <div className="flex flex-wrap items-center gap-2 mb-10">
-              <span className="text-xs text-slate-600">Popular:</span>
+              <span className="text-xs text-slate-500 dark:text-slate-600">Popular:</span>
               {popularSearches.map(s => (
                 <button
                   key={s}
                   onClick={() => { setSearchQuery(s); setCurrentPage('marketplace'); }}
-                  className="px-3 py-1.5 bg-white/[0.03] border border-white/[0.06] rounded-lg text-xs text-slate-400 hover:border-cyan-500/20 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all"
+                  className="px-3 py-1.5 bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/[0.06] rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:border-cyan-500/20 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-cyan-50/50 dark:hover:bg-cyan-500/5 transition-all shadow-sm dark:shadow-none"
                 >
                   {s}
                 </button>
@@ -267,36 +268,36 @@ export default function HeroSection() {
               </div>
 
               {/* Floating stat cards */}
-              <div className="absolute -bottom-6 -left-8 animate-float glass rounded-xl p-3 border border-white/[0.06] shadow-xl">
+              <div className="absolute -bottom-6 -left-8 animate-float bg-white dark:bg-[#1a1a1a]/80 backdrop-blur-md rounded-xl p-3 border border-slate-200 dark:border-white/[0.06] shadow-xl">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-emerald-500/10 rounded-lg flex items-center justify-center">
-                    <Cpu className="w-5 h-5 text-emerald-400" />
+                    <Cpu className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-white font-mono">4 hrs/day</p>
+                    <p className="text-xs font-bold text-slate-900 dark:text-white font-mono transition-colors">4 hrs/day</p>
                     <p className="text-[10px] text-slate-500">Time Saved</p>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -top-4 -right-6 animate-float glass rounded-xl p-3 border border-white/[0.06] shadow-xl" style={{ animationDelay: '1.5s' }}>
+              <div className="absolute -top-4 -right-6 animate-float bg-white dark:bg-[#1a1a1a]/80 backdrop-blur-md rounded-xl p-3 border border-slate-200 dark:border-white/[0.06] shadow-xl" style={{ animationDelay: '1.5s' }}>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-cyan-500/10 rounded-lg flex items-center justify-center">
-                    <Workflow className="w-5 h-5 text-cyan-400" />
+                    <Workflow className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-white font-mono">₹25K/mo</p>
+                    <p className="text-xs font-bold text-slate-900 dark:text-white font-mono transition-colors">₹25K/mo</p>
                     <p className="text-[10px] text-slate-500">Cost Saved</p>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute top-1/2 -right-12 animate-float glass rounded-xl p-3 border border-white/[0.06] shadow-xl" style={{ animationDelay: '3s' }}>
+              <div className="absolute top-1/2 -right-12 animate-float bg-white dark:bg-[#1a1a1a]/80 backdrop-blur-md rounded-xl p-3 border border-slate-200 dark:border-white/[0.06] shadow-xl" style={{ animationDelay: '3s' }}>
                 <div className="flex items-center gap-1.5">
                   {[1,2,3,4,5].map(i => (
                     <span key={i} className="text-amber-400 text-xs">★</span>
                   ))}
-                  <span className="text-xs text-white font-bold ml-1">4.8</span>
+                  <span className="text-xs text-slate-900 dark:text-white font-bold ml-1 transition-colors">4.8</span>
                 </div>
                 <p className="text-[10px] text-slate-500">1,200+ sold</p>
               </div>
@@ -305,12 +306,12 @@ export default function HeroSection() {
         </div>
 
         {/* Bottom stats bar - Bento Design */}
-        <div className="mt-24 pt-16 border-t border-white/[0.08]">
+        <div className="mt-24 pt-16 border-t border-slate-200 dark:border-white/[0.08] transition-colors">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
             
             {/* Heading */}
             <div className="md:col-span-2 flex items-start p-2 mb-6 md:mb-0">
-              <h2 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-semibold text-white tracking-tight leading-[1.05]">
+              <h2 className="text-[2.5rem] md:text-5xl lg:text-[4rem] font-semibold text-slate-900 dark:text-white tracking-tight leading-[1.05] transition-colors">
                 Numbers<br />speak.
               </h2>
             </div>
@@ -349,7 +350,7 @@ export default function HeroSection() {
 
             {/* Arrow */}
             <div className="hidden md:flex items-end justify-end p-6 md:col-span-1 min-h-[240px]">
-              <svg className="w-24 h-24 text-white opacity-90 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter">
+              <svg className="w-24 h-24 text-slate-900 dark:text-white opacity-90 hover:translate-x-2 hover:-translate-y-2 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="square" strokeLinejoin="miter">
                 <path d="M6 6h12v12M18 6L6 18" />
               </svg>
             </div>

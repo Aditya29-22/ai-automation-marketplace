@@ -1,24 +1,93 @@
-import { useState } from 'react';
-import { Download, Heart, Package, FileText, Trash2, ShoppingBag, ExternalLink } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Download, Heart, Package, FileText, Trash2, ShoppingBag, ExternalLink, User } from 'lucide-react';
 import { useStore } from '../store/useStore';
+
+const carouselTexts = [
+  "Automate your workflow,<br/>Scale your business",
+  "Eliminate manual tasks,<br/>Boost productivity",
+  "AI-powered solutions,<br/>Seamless integration",
+  "Work smarter,<br/>Not harder"
+];
 
 export default function DashboardPage() {
   const { purchases, wishlist, removeFromWishlist, isLoggedIn, user, setAuthModalOpen, setCurrentPage, setSelectedProductId, logout, setCustomRequestOpen } = useStore();
   const [activeTab, setActiveTab] = useState('purchases');
+  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      const interval = setInterval(() => {
+        setCarouselIndex(prev => (prev + 1) % carouselTexts.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [isLoggedIn]);
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center p-4">
-        <div className="text-center">
-          <div className="w-20 h-20 bg-cyan-500/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-cyan-500/10">
-            <Package className="w-10 h-10 text-cyan-400/40" />
+      <div className="h-[calc(100vh-6.5rem)] min-h-[600px] bg-[#0a0a0f] flex">
+        {/* Left Side - Image Panel */}
+        <div className="hidden lg:flex lg:w-1/2 p-4">
+          <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-gradient-to-br from-[#4a3b8c] to-[#201b44] flex flex-col justify-between p-12">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 opacity-50 mix-blend-overlay"
+              style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+            />
+            
+            {/* Top Bar */}
+            <div className="relative z-10 flex justify-between items-center w-full">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 border-[3px] border-white flex items-center justify-center p-1">
+                  <div className="w-full h-full bg-white" />
+                </div>
+              </div>
+              <button 
+                onClick={() => setCurrentPage('home')}
+                className="flex items-center gap-2 px-5 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full text-white text-[13px] transition-colors"
+              >
+                Back to website <span className="text-lg leading-none">&rarr;</span>
+              </button>
+            </div>
+
+            {/* Bottom Content */}
+            <div className="relative z-10 max-w-md text-center mx-auto pb-8">
+              <h1 
+                className="text-[2.5rem] font-medium text-white leading-[1.2] mb-8 tracking-tight transition-opacity duration-500"
+                dangerouslySetInnerHTML={{ __html: carouselTexts[carouselIndex] }}
+              />
+              {/* Carousel Indicators */}
+              <div className="flex items-center justify-center gap-2.5">
+                {carouselTexts.map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`h-1 rounded-full transition-all duration-500 ${
+                      i === carouselIndex ? 'w-10 bg-white' : 'w-6 bg-white/30'
+                    }`} 
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-          <h2 className="text-xl font-bold text-white mb-2">Login Required</h2>
-          <p className="text-slate-500 mb-4">Sign in to access your dashboard</p>
-          <button onClick={() => setAuthModalOpen(true)}
-            className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/10">
-            Sign In
-          </button>
+        </div>
+
+        {/* Right Side - Content Panel */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12 lg:p-24 bg-[#0a0a0f]">
+          <div className="w-full max-w-[440px] animate-fade-in-up">
+            <h2 className="text-[2.75rem] font-medium text-white tracking-tight mb-4 leading-tight">
+              Login Required
+            </h2>
+            <p className="text-[#a09fa6] text-[15px] mb-12 leading-relaxed">
+              Sign in to access your dashboard, view your purchases, and manage your wishlist.
+            </p>
+
+            <button 
+              onClick={() => setAuthModalOpen(true)}
+              className="w-full py-4 bg-[#2786FF] hover:bg-blue-600 text-white font-medium rounded-xl transition-all text-[15px]"
+            >
+              Sign In
+            </button>
+          </div>
         </div>
       </div>
     );
