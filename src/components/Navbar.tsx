@@ -149,9 +149,16 @@ export default function Navbar() {
                       </button>
                       <button 
                         onClick={() => setCustomRequestOpen(true)}
-                        className="px-3 py-1.5 bg-[#2786FF] hover:bg-blue-600 text-[11px] font-medium text-white rounded-md transition-colors"
+                        className="relative px-3 py-1.5 text-white text-[11px] font-medium rounded-md shadow-lg overflow-hidden group/btn"
                       >
-                        View Docs
+                        <div className="absolute inset-0 -z-10">
+                          <div 
+                            className="absolute top-1/2 left-1/2 w-[300%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                            style={{ animation: 'spin-center 4s linear infinite' }}
+                          />
+                        </div>
+                        <div className="absolute inset-[1px] bg-[#0a0a0f] rounded-[5px] -z-10 transition-colors group-hover/btn:bg-white/5" />
+                        <span className="relative z-10">View Docs</span>
                       </button>
                     </div>
                   </div>
