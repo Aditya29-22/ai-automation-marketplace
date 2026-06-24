@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Search, ArrowRight, Shield, Zap, Clock, Terminal, Cpu, Workflow } from 'lucide-react';
+import { Search, ArrowUpRight, Shield, Zap, Clock, Terminal, Cpu, Workflow } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
@@ -126,7 +126,24 @@ export default function HeroSection() {
             <form onSubmit={handleSearch} className="mb-6 w-full max-w-xl mx-auto">
               <div className="relative flex items-center group">
                 <div className="relative w-full flex items-center">
-                  <Search className="absolute left-4 w-5 h-5 text-slate-400 dark:text-slate-500 group-focus-within:text-[#2786FF] transition-colors" />
+                  <div 
+                    className="absolute left-4 w-5 h-5 flex items-center justify-center overflow-hidden z-10"
+                    style={{
+                      maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E")`,
+                      maskSize: 'contain',
+                      maskRepeat: 'no-repeat',
+                      maskPosition: 'center',
+                      WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E")`,
+                      WebkitMaskSize: 'contain',
+                      WebkitMaskRepeat: 'no-repeat',
+                      WebkitMaskPosition: 'center',
+                    }}
+                  >
+                    <div 
+                      className="absolute top-1/2 left-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                      style={{ animation: 'spin-center 4s linear infinite' }}
+                    />
+                  </div>
                   <input
                     type="text"
                     value={query}
@@ -136,9 +153,16 @@ export default function HeroSection() {
                   />
                   <button
                     type="submit"
-                    className="absolute right-2 px-5 py-2.5 bg-[#2786FF] hover:bg-blue-600 text-white text-sm font-semibold rounded-xl transition-all flex items-center gap-1.5 shadow-lg shadow-blue-500/20"
+                    className="absolute right-2 px-5 py-2.5 text-white text-sm font-semibold rounded-xl transition-all flex items-center gap-1.5 shadow-lg overflow-hidden group/btn"
                   >
-                    Search <ArrowRight className="w-4 h-4" />
+                    <div className="absolute inset-0 -z-10">
+                      <div 
+                        className="absolute top-1/2 left-1/2 w-[200%] aspect-square bg-[conic-gradient(from_0deg,#ec4899,#ef4444,#a855f7,#ec4899)]"
+                        style={{ animation: 'spin-center 4s linear infinite' }}
+                      />
+                    </div>
+                    <span className="relative z-10">Search</span>
+                    <ArrowUpRight className="w-4 h-4 relative z-10" />
                   </button>
                 </div>
               </div>
